@@ -1,0 +1,9 @@
+<!-- Use stable and unique IDs!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns='sap.m' xmlns:smartform="sap.ui.comp.smartform" xmlns:smartfield="sap.ui.comp.smartfield">
+    <!-- Skip LCM -->
+    <smartform:GroupElement id="idSkipLCMGroupElement" label="{/#C_CentralPurchaseContractTPType/LcmSkip/@sap:label}" visible="{SkipLcmVisFlag}">
+        <smartform:elements>
+            <Switch id="idSkipLCMSwitch" class="sapUiSmallMarginEnd" state="{= !!${LcmSkip}}" enabled="false" customTextOn=" " customTextOff=" " />
+        </smartform:elements>
+    </smartform:GroupElement>
+</core:FragmentDefinition>

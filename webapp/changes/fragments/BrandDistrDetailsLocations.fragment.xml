@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns="sap.m" xmlns:smartform="sap.ui.comp.smartform"
+	xmlns:smartfield="sap.ui.comp.smartfield" xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<smartform:GroupElement id="idBrandProductionLocationElement">
+		<smartform:elements>
+            <VBox id="idBrandProductionLocationVBox">
+				<Label id="idBrandProductionLocationLabel" text="{/#C_CntrlPurContrDistributionTPType/ProductionLocation/@sap:label}"/>
+				<Link id="idBrandProductionLocationLink" text="{ProductionLocationName} ({ProductionLocation})" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onLocationPress" visible="{= !!${ProductionLocation} }"/>
+                <Text id="idBrandProductionLocationText" emptyIndicatorMode="On" text="" visible="{= !${ProductionLocation} }"/>
+            </VBox>
+		</smartform:elements>
+	</smartform:GroupElement>	
+
+    <smartform:GroupElement id="idBrnadDeliveryLocationElement">
+		<smartform:elements>
+            <VBox id="idBrandDeliveryLocationVBox">
+				<Label id="idBrandDeliveryLocationLabel" text="{/#C_CntrlPurContrDistributionTPType/DeliveryLocation/@sap:label}"/>
+				<Link id="idBrandDeliveryLocationLink" text="{DeliveryLocationName} ({DeliveryLocation})" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onLocationPress" visible="{= !!${DeliveryLocation}}" />
+                <Text id="idBrandDeliveryLocationText" emptyIndicatorMode="On" text="" visible="{= !${DeliveryLocation}}"/>
+            </VBox>
+		</smartform:elements>
+	</smartform:GroupElement>
+</core:FragmentDefinition>

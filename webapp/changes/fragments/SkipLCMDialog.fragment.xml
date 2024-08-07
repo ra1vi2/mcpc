@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+    <Dialog id="idSkipLCMDialog" title="{i18n>SkipLCMDialogTitle}" contentWidth="55%" resizable="true" draggable="true" escapeHandler=".handleSkipLCMDialogEscape">
+        <content>
+            <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                <l:content>
+                    <Text id="idSkipLCMDefaultText" text="{i18n>SkipLCMDefaultText}" class="sapUiTinyMarginBottom"/>
+                    <TextArea id="idnotes" value="{skipLCMModel>/notes}" rows="3" growing="true" width="100%" maxLength="5000" />
+                </l:content>
+            </l:VerticalLayout>
+        </content>
+        <beginButton>
+            <Button id="idSkipLCMSubmitButton" text="{i18n>SubmitButtonText}" type="Emphasized" tooltip="{i18n>SubmitButtonText}" press="handleSkipLCmSubmitButtonPress" />
+        </beginButton>
+        <endButton>
+            <Button id="idSkipLCMCancelButton" text="{i18n>CancelButtonText}" tooltip="{i18n>CancelButtonText}" press="handleSkipLCMDialogClose" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

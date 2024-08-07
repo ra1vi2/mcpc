@@ -1,0 +1,36 @@
+
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns='sap.m' xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartfield="sap.ui.comp.smartfield">	
+    <VBox id="idVBoxDirectedPart"> 
+      <MessageStrip
+        id="idMessageDirectedPart"
+        text="{i18n>DirectedPartMszStripText}"
+        showIcon="true"
+        visible="{= ${ui>/editable} &amp;&amp; ${DeltaCTRCreatedFlag}}"
+        type="Warning"        
+        class="sapUiMediumMarginBottom">
+      </MessageStrip>
+      <smartTable:SmartTable id="idSmartTableForDirectedPartExchangeRate" entitySet="xVWKSxNLP_C_EXCHG_RATE"
+            tableBindingPath="to_EXCHG_RATE"   header="{i18n>DirectedPartExchangeRate}" enableAutoBinding="true" >
+        <Table id="idTableforDirectedPart" >
+          <columns>
+            <Column id="idColumnForExchangeRate">
+              <Text id="idTextForColumnForExchangeRate" text="{/#xVWKSxNLP_C_EXCHG_RATEType/ExchangeRate/@sap:label}" />
+              <customData>
+                <core:CustomData id="idForExchangeRateCore" key="p13nData" value='\{"columnKey":"ExchangeRate", "leadingProperty": "ExchangeRate", "columnIndex": "1"}'/>
+              </customData>
+            </Column>
+          </columns>
+          <items>
+           <ColumnListItem  id="idExchangeRateListItem">
+             <cells>
+               <HBox id="idHLayoutForExcRate">
+                  <!-- As part of incidnet-748805 fix we have removed input and text fileds and changed to Smart field -->
+                <smartfield:SmartField id="idTextForDisplay" value="{ExchangeRate}" editable="{= ${ui>/editable}}"/>
+               </HBox>
+             </cells>           
+           </ColumnListItem>
+          </items>
+        </Table>      
+    </smartTable:SmartTable>
+  </VBox>
+</core:FragmentDefinition> 

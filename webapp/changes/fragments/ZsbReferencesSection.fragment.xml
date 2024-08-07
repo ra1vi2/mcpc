@@ -1,0 +1,53 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:uxap="sap.uxap" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:layout="sap.ui.layout" core:require="{Constants: 'vwks/nlp/s2p/mm/pctrcentral/manage/changes/utils/Constants'}">
+	<uxap:ObjectPageSection id="idZsbReferencesSection" title="{RefZSBFacetDesc}" titleUppercase="false" visible="{showRefZSBFacet}">
+		<uxap:ObjectPageSubSection id="idZsbReferencesSubSection">
+			<layout:VerticalLayout id="idZsbReferencesLayout" class="sapUiContentPadding" width="100%">
+				<smartTable:SmartTable id="idZsbReferencesSmartTable" entitySet="xVWKSxNLO_CCTR_I_REF_ZSB" tableType="ResponsiveTable" demandPopin="true"
+					useTablePersonalisation="true" tableBindingPath="to_RefZSBArea" showRowCount="true" enableAutoBinding="true" useExportToExcel="true"
+                    class="sapUiResponsiveContentPadding"
+					beforeRebindTable=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onBeforeZsbRefRebindTable">
+					<OverflowToolbar id="idZsbRefToolbar">
+						<ComboBox id="idRefPlantComboBox" change=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onRefPlantChange"
+							placeholder="{i18n>Plants}"/>
+					</OverflowToolbar>
+					<Table id="idZsbRefInnerTable">
+						<columns>
+							<Column id="idZsbRefContractItemColumn" width="10rem">
+								<Label id="idZsbRefContractItemColumnLabel"
+									text="{/#xVWKSxNLO_CCTR_I_REF_ZSBType/CentralContract/@sap:label} / {/#xVWKSxNLO_CCTR_I_REF_ZSBType/CentralContractItem/@sap:label}"
+									tooltip="{/#xVWKSxNLO_CCTR_I_REF_ZSBType/CentralContract/@sap:label} / {/#xVWKSxNLO_CCTR_I_REF_ZSBType/CentralContractItem/@sap:label}"></Label>
+								<customData>
+									<core:CustomData id="idZSBRefContractCustomData" key="p13nData"
+										value='\{"columnKey": "CentralContractItem", "leadingProperty": "ContractNumberItemUniqueId", "columnIndex": "6" \}'/>
+								</customData>
+							</Column>
+                            <Column id="idPricePerAssemblyColumn" visible="{= ${ZSBIndicator} !== Constants.ZSB_INDICATOR.DIR}" width="11rem">
+								<Label id="idPricePerAssemblyColumnLabel"
+									text="{/#xVWKSxNLO_CCTR_I_REF_ZSBType/PricePerAssembly/@sap:label}"
+									tooltip="{/#xVWKSxNLO_CCTR_I_REF_ZSBType/PricePerAssembly/@sap:label}"></Label>
+								<customData>
+									<core:CustomData id="idPricePerAssemblyCustomData" key="p13nData"
+										value='\{"columnKey": "PricePerAssembly", "leadingProperty": "PricePerAssembly", "additionalProperty":"PriceAsmbCurrency", "columnIndex": "7" \}'/>
+								</customData>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem id="idZsbInnerTableListItem">
+                                <cells>
+                                    <Link id="idZsbRefContractItemText" text="{CentralContract} / {CentralContractItem}"
+                                    press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleContractItemNav"/>
+                                    <HBox id="idPricePerAssemblyHbox" justifyContent="End" alignItems="Center">
+                                        <Text id="idPricePerAssemblyValue" class="sapUiLargeMarginEnd" textAlign="Right" text="{PricePerAssembly}"/>
+                                        <Text id="idPricePerAssemblyCurrency" text="{PriceAsmbCurrency}"> </Text>
+                                    </HBox>
+                                </cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</smartTable:SmartTable>
+			</layout:VerticalLayout>
+		</uxap:ObjectPageSubSection>
+	</uxap:ObjectPageSection>
+</core:FragmentDefinition>

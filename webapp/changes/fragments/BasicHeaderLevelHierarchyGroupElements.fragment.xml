@@ -1,0 +1,59 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns="sap.m" xmlns:smartform="sap.ui.comp.smartform" xmlns:smartfield="sap.ui.comp.smartfield">
+    <!-- Priority -->
+    <smartform:GroupElement id="idGroupContractPriorityGroupElement" label="{/#C_CntrlPurContrHierHdrTPType/xvwksxnlp_priority_appr/@sap:label}">
+        <smartform:elements>
+            <HBox id="idGroupContractPriorityContainer" alignContent="Start" alignItems="Center">
+                <Switch id="idGroupContractPrioritySwitch" class="sapUiSmallMarginEnd" state="{xvwksxnlp_priority_appr}" enabled="{ui>/editable}" customTextOn=" " customTextOff=" " />
+                <Text id="idGroupContractPriorityText" text="{= !!${xvwksxnlp_priority_appr} ? ${i18n>HighPriority} : ${i18n>MediumPriority} }" />
+            </HBox>
+        </smartform:elements>
+    </smartform:GroupElement>
+    <!--Supplier Overall Status-->
+    <smartform:GroupElement id="idHierarchySupplierOverallStatusGroupElement" visible="{= !${SupplierOverallStatus} }" label="{i18n>SupplierOverallStatusLabel}">
+        <smartform:elements>
+            <Text id="idNATextSupplierOverallStatus" text="{i18n>SSTLStatusNA}" tooltip="{i18n>SSTLStatusNADesc}" />
+        </smartform:elements>
+    </smartform:GroupElement>
+    <smartform:GroupElement id="idHierarchySupplierOverallStatusIconGroupElement" visible="{= !!${SupplierOverallStatus} }" label="{i18n>SupplierOverallStatusLabel}">
+        <smartform:elements>
+            <core:Icon
+                id="idSupplierOverallStatus"
+                width="1.25rem"
+                tooltip="{ path: 'SupplierOverallStatus', formatter: '.extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.getSupplierOverallStatusTooltip' }"
+                src="{ path: 'SupplierOverallStatus', formatter: '.extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.getSupplierOverallStatusIcon' }"
+                color="{ path: 'SupplierOverallStatus', formatter: '.extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.getSupplierOverallStatusState' }"
+                press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onSupplierOverallStatusPress"
+            />
+        </smartform:elements>
+    </smartform:GroupElement>
+    <!--/ Supplier Overall Status-->
+    <!-- Automation Category -->
+    <smartform:GroupElement id="idAutomationHierarchyCatGroupElement" visible="{AutomationFlag}">
+        <smartform:elements>
+            <smartfield:SmartField id="idAutomationHierarchyCategory" value="{AutomationCat}" editable="false" />
+        </smartform:elements>
+    </smartform:GroupElement>
+    <!-- Base Material and Base Material Description based on Process Indicator -->
+    <smartform:GroupElement id="idBaseMaterialHierarchyGroupElement" visible="{BaseVisFlag}">
+        <smartform:elements>
+            <VBox id="idBaseMaterialHierVbox">
+                <Label id="idBaseMaterialHierarchyLabel" text="{i18n>BaseMaterial}"  class="sapUiTinyMarginBottom"/>
+                <Text id="idBaseMaterialHierarchyText" emptyIndicatorMode= "On" text="{path: 'BaseMaterial', formatter: '.extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.getBaseMaterialFormatter'}" />
+            </VBox>
+        </smartform:elements>
+    </smartform:GroupElement>
+    <smartform:GroupElement id="idBaseMaterialDescHierarchyGroupElement" visible="{BaseVisFlag}">
+        <smartform:elements>
+            <!-- Base material description editable in edit and create mode-->
+            <smartfield:SmartField id="idBaseMaterialDescHierarchy" value="{BaseMaterialDesc}" editable="{ui>/editable}" />
+        </smartform:elements>
+    </smartform:GroupElement>
+    <!-- Spare Part Relevant indicator -->
+    <!-- As A-Material type changes removed in BE, so we have removed the visibility flag from UI -->
+    <smartform:GroupElement id="idHierarchicalSparePartRelevantGroupElement">
+        <smartform:elements>
+            <smartfield:SmartField id="idHierarchicalSparePartRelevant" value="{SparePartInd}" editable="false" />
+        </smartform:elements>
+    </smartform:GroupElement>
+</core:FragmentDefinition>

@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:m="sap.m" xmlns:uxap="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:smartTable="sap.ui.comp.smarttable">
+    <uxap:ObjectPageSection id="idEBONHistorySection" title="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>EBONOrderHistorySection}" titleUppercase="false" visible="{= ${xvwksxnlp_ebonrelevance} }">
+        <uxap:ObjectPageSubSection id="idEBONOrderHistory">
+            <layout:VerticalLayout id="idEBONOrderHistorytLayout" class="sapUiContentPadding" width="100%">
+                <smartTable:SmartTable
+                    id="idEBONHistorySmartTable"
+                    tableType="ResponsiveTable"
+                    showRowCount="true"
+                    header="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>EBONHistoryTableHeader}"
+                    tableBindingPath="to_EbonOrderHist"
+                    entitySet="xVWKSxNLP_CCTR_C_EBON_ORD_HIST"
+                    demandPopin="true"
+                    useExportToExcel="true"
+                    useVariantManagement="true"
+                    useTablePersonalisation="true"
+                    enableAutoBinding="true"
+                    enableAutoColumnWidth="true"
+                    class="sapUiResponsiveContentPadding"
+                    initiallyVisibleFields="OrderKey,OrderNr,StartDate,EndDate"
+                >
+                    <Table id="idEBONHierarchyInnerTable" fixedLayout="false" mode="None">
+                        <columns>
+                            <Column id="idOrderKeyCustomColumn" width="9em">
+                                <Text id="idOrderKeyCustomColumnLabel" text="{/#xVWKSxNLP_CCTR_C_EBON_ORD_HISTType/OrderKey/@sap:label}" tooltip="{/#xVWKSxNLP_CCTR_C_EBON_ORD_HISTType/OrderKey/@sap:quickinfo}"/>
+                                <customData>
+                                    <core:CustomData id="idOrderKeyCustomData" key="p13nData" value='\{"columnKey": "OrderKey","columnIndex":"0","leadingProperty": "OrderKey"}' />
+                                </customData>
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem id="idEBONOrderHistoryCustomColumnList">
+                                <cells>
+                                    <HBox id="idEBONOrderHistoryHBox">
+                                        <Text id="idOrderKeyCustomColumnValue" text="{OrderKey}" />
+                                    </HBox>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </smartTable:SmartTable>
+            </layout:VerticalLayout>
+        </uxap:ObjectPageSubSection>
+    </uxap:ObjectPageSection>
+</core:FragmentDefinition>

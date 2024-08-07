@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns='sap.m'>
+	<Button id="idBrandInfoCopyBtn"
+		text="{i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP>CopyInfoContractButton}"
+		tooltip="{i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP>CopyInfoContractButton}"
+		enabled="false"
+		type="Transparent"
+		press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ListReportExtController.onBrandInfoCopyButtonPress" />
+	<Button id="idRequestContractBtn" 
+        text="{i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP>RequestContractLabel}"
+		tooltip="{i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP>RequestContractLabel}" type="Transparent"
+		press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ListReportExtController.handleRequestForContract"></Button>
+</core:FragmentDefinition>

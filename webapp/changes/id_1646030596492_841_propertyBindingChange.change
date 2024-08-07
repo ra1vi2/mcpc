@@ -1,0 +1,41 @@
+{
+	"fileName": "id_1646030596492_841_propertyBindingChange",
+	"fileType": "change",
+	"changeType": "propertyBindingChange",
+	"moduleName": "",
+	"reference": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"packageName": "$TMP",
+	"content": {
+		"property": "title",
+		"newBinding": "{path:'i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>EBONOrderHistorySection', type:'sap.ui.model.type.String'}"
+	},
+	"selector": {
+		"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ObjectPage.view.Details::C_CntrlPurContrHierItemDistrTP--vwks.nlp.s2p.mm.pctrcentral.manage.idEBONHistoryHieSection",
+		"type": "sap.uxap.ObjectPageSection",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/ui.s2p.mm.pur.central.ctr.sts1/changes/",
+	"projectId": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"creation": "2022-02-28T06:43:18.504Z",
+	"originalLanguage": "EN",
+	"support": {
+		"generator": "Change.createInitialFileContent",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.78.15",
+		"sourceChangeFileName": "",
+		"compositeCommand": ""
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"validAppVersions": {
+		"creation": "1.0.0",
+		"from": "1.0.0",
+		"to": "1.0.0"
+	},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}

@@ -1,0 +1,9 @@
+<!-- Use stable and unique IDs!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns='sap.m'>
+        <VBox id="idGRConsumtionVBoxGC" >
+        <Title id="GRConsumtionLabelGC" text="{i18n>GRConsumptionPercentage}" level="H3"/>
+        <ProgressIndicator id="GRConsumProgIndGC" percentValue="{GRConsumptionPercentage}" displayValue="{path: 'GRConsumptionPercentage', type: 'sap.ui.model.odata.type.Decimal', constraints: {
+                        scale: 3
+                    }} %" showValue="true" state="None" />
+    </VBox>
+</core:FragmentDefinition>

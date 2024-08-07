@@ -1,0 +1,40 @@
+{
+	"fileName": "id_1653982696548_232_rename",
+	"fileType": "change",
+	"changeType": "rename",
+	"moduleName": "",
+	"reference": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"packageName": "$TMP",
+	"content": {
+		"originalControlType": "sap.m.IconTabFilter"
+	},
+	"selector": {
+		"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabFilter-_tab2",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {
+		"newText": {
+			"value": "{i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP>CentralGroupContractLabel}",
+			"type": "XTBS"
+		}
+	},
+	"namespace": "apps/ui.s2p.mm.pur.central.ctr.sts1/changes/",
+	"projectId": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"creation": "2022-05-31T07:38:55.756Z",
+	"originalLanguage": "EN",
+	"support": {
+		"generator": "sap.ui.rta.command",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.96.6",
+		"sourceChangeFileName": "",
+		"compositeCommand": "",
+		"command": "rename"
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}

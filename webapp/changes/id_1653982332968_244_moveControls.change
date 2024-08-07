@@ -1,0 +1,71 @@
+{
+	"fileName": "id_1653982332968_244_moveControls",
+	"fileType": "change",
+	"changeType": "moveControls",
+	"moduleName": "",
+	"reference": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"packageName": "$TMP",
+	"content": {
+		"movedElements": [{
+			"selector": {
+				"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabFilter-_tab2",
+				"idIsLocal": false
+			},
+			"sourceIndex": 1,
+			"targetIndex": 0
+		}],
+		"source": {
+			"selector": {
+				"aggregation": "items",
+				"type": "sap.m.IconTabBar",
+				"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabBar",
+				"idIsLocal": false
+			}
+		},
+		"target": {
+			"selector": {
+				"aggregation": "items",
+				"type": "sap.m.IconTabBar",
+				"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabBar",
+				"idIsLocal": false
+			}
+		}
+	},
+	"selector": {
+		"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabBar",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/ui.s2p.mm.pur.central.ctr.sts1/changes/",
+	"projectId": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"creation": "2022-05-31T07:32:14.340Z",
+	"originalLanguage": "EN",
+	"support": {
+		"generator": "sap.ui.rta.command",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.96.6",
+		"sourceChangeFileName": "",
+		"compositeCommand": "",
+		"command": "move"
+	},
+	"oDataInformation": {},
+	"dependentSelector": {
+		"source": {
+			"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabBar",
+			"idIsLocal": false
+		},
+		"target": {
+			"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabBar",
+			"idIsLocal": false
+		},
+		"movedElements": [{
+			"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ListReport.view.ListReport::C_CentralPurchaseContractTP--template::IconTabFilter-_tab2",
+			"idIsLocal": false
+		}]
+	},
+	"jsOnly": false,
+	"variantReference": "",
+	"appDescriptorChange": false
+}

@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<QuickView
+		id="locationQuickView">
+		<QuickViewPage
+			header="{i18n>BPLocationTitle}">
+			<QuickViewGroup>
+                <elements>
+                    <QuickViewGroupElement
+                        label="{/#xVWKSxNLP_C_BP_ADDRType/bpname/@sap:label}"
+                        value="{locationModel>/bpname} ({locationModel>/BusinessPartner})"
+                        type="text" />
+                    <QuickViewGroupElement
+                        label="{/#xVWKSxNLP_C_BP_ADDRType/CityName/@sap:label}"
+                        value="{locationModel>/CityName}"
+                        type="text" />
+                    <QuickViewGroupElement
+                        label="{/#xVWKSxNLP_C_BP_ADDRType/PostalCode/@sap:label}"
+                        value="{locationModel>/PostalCode}"
+                        type="text" />
+                    <QuickViewGroupElement
+                        label="{/#xVWKSxNLP_C_BP_ADDRType/StreetName/@sap:label}"
+                        value="{locationModel>/StreetName}"
+                        type="text" />
+                    <QuickViewGroupElement
+                        label="{/#xVWKSxNLP_C_BP_ADDRType/HouseNumber/@sap:label}"
+                        value="{locationModel>/HouseNumber}"
+                        type="text" />
+                    <QuickViewGroupElement
+                        label="{/#xVWKSxNLP_C_BP_ADDRType/CountryName/@sap:label}"
+                        value="{locationModel>/CountryName}"
+                        type="text" />
+                    </elements>
+			</QuickViewGroup>
+		</QuickViewPage>
+	</QuickView>
+</core:FragmentDefinition>

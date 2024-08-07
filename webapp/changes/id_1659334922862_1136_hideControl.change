@@ -1,0 +1,33 @@
+{
+	"fileName": "id_1659334922862_1136_hideControl",
+	"fileType": "change",
+	"changeType": "hideControl",
+	"moduleName": "",
+	"reference": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"packageName": "$TMP",
+	"content": {},
+	"selector": {
+		"id": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ObjectPage.view.Details::C_CentralPurchaseContractTP--com.sap.vocabularies.UI.v1.FieldGroup::Supplier::SupplierNameAlias::GroupElement",
+		"idIsLocal": false
+	},
+	"layer": "CUSTOMER_BASE",
+	"texts": {},
+	"namespace": "apps/ui.s2p.mm.pur.central.ctr.sts1/changes/",
+	"projectId": "vwks.nlp.s2p.mm.pctrcentral.manage",
+	"creation": "2022-08-01T06:22:08.712Z",
+	"originalLanguage": "EN",
+	"support": {
+		"generator": "sap.ui.rta.command",
+		"service": "",
+		"user": "",
+		"sapui5Version": "1.96.6",
+		"sourceChangeFileName": "",
+		"compositeCommand": "id_1659334922863_1137_composite",
+		"command": "remove"
+	},
+	"oDataInformation": {},
+	"dependentSelector": {},
+	"jsOnly": false,
+	"variantReference": "ui.s2p.mm.pur.central.ctr.sts1::sap.suite.ui.generic.template.ObjectPage.view.Details::C_CentralPurchaseContractTP--template::ObjectPage::ObjectPageVariant",
+	"appDescriptorChange": false
+}

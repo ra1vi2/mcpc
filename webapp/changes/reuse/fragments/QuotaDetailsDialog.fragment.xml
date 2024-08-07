@@ -1,0 +1,165 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:table="sap.ui.table" xmlns:core="sap.ui.core" core:require="{ formatMessage: 'sap/base/strings/formatMessage'}">
+	<Dialog id="idQuotaDetailsDialog" contentWidth="90%" contentHeight="60%" title="{i18n>QuotaDialogTitle}" horizontalScrolling="false" verticalScrolling="true" class="sapUiSizeCompact">
+	    <VBox fitContainer="true">
+            <HBox class="sapUiSmallMargin">
+                <Label id="idMaterialInfoLabel" text="{i18n>Material}" labelFor="idMaterialInfo"  />
+                <Text id="idMaterialInfo" class="sapUiSmallMarginBegin" text="{quotaModel>/materialInfo}"></Text>
+            </HBox>
+            <MessageStrip id="idMszStrip" class="sapUiSmallMargin" type="{quotaModel>/messageStripType}" text="{quotaModel>/messageStripValue}" visible= "{quotaModel>/messageStripVisibility}"/>
+            <TreeTable
+                xmlns="sap.ui.table"     
+                xmlns:m="sap.m"
+                id="idQuotaDialogTreeTable" class="sapUiSmallMarginBegin"
+                rows="{path:'quotaModel>/data', parameters: {arrayNames:['CHILDNODE']}}"
+                enableSelectAll="false"
+                ariaLabelledBy="title">
+                <extension>
+                    <m:OverflowToolbar id="idQuotaDialogSmartTableToolbar" design="Transparent">
+                        <m:Title id="idQuotaSmartTable" text="{i18n>QuotaDialogSmartTableHeader}"/>
+                        <m:ToolbarSpacer/>
+                        <m:OverflowToolbarButton id="idButtonForEdit" icon="sap-icon://edit" tooltip="{i18n>EditButton}" visible="{= ${quotaModel>/editPopup} === false}" press="onEditQuota"/>
+                        <m:OverflowToolbarButton id="idButtonForAdd" icon="sap-icon://add" tooltip="{i18n>AddButton}" press="handleAddPopOver"  visible="{quotaModel>/editPopup}"/>
+                        <m:Button text="{i18n>CollapseAll}" press="onCollapseAll"/>
+                        <m:Button text="{i18n>CollapseSelection}" press="onCollapseSelection"/>
+                        <m:Button text="{i18n>ExpandFirstLevel}" press="onExpandFirstLevel"/>
+                        <m:Button text="{i18n>ExpandSelection}" press="onExpandSelection"/>
+                    </m:OverflowToolbar>
+                </extension>
+                <columns>              
+                     <Column width="13rem">
+                        <m:Label text="{i18n>CompanyCode}"/>
+                        <template>
+                            <m:Text text="{quotaModel>COMPANYCODE}" wrapping="false" />
+                        </template>
+                    </Column>
+                   <Column width="7rem">
+                        <m:Label text="{i18n>Plant}"/>
+                        <template>
+                            <m:Text text="{quotaModel>PLANT}" />
+                        </template>
+                    </Column>
+                   <Column width="7rem">
+                        <m:Label text="{i18n>Quota_Valid_From}"/>
+                        <template>
+                            <m:HBox>
+                                <m:Text id="idQuotaValidFromText" text="{quotaModel>VALIDITY_FROM}" visible="{= !${quotaModel>/editPopup} &amp;&amp; ${quotaModel>LEVEL} === 'QV'}"/>
+                                <m:DatePicker id="idQuotaValidFrom" value="{quotaModel>VALIDITY_FROM}" valueFormat="yyyy-MM-dd" displayFormat="long" visible="{= ${quotaModel>/editPopup} &amp;&amp; ${quotaModel>LEVEL} === 'QV'}"/>
+                            </m:HBox>
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>Quota_Valid_To}"/>
+                        <template>
+                            <m:HBox>
+                                <m:Text id="idQuotaValidToText" text="{quotaModel>VALIDITY_TO}" visible="{= !${quotaModel>/editPopup} &amp;&amp; ${quotaModel>LEVEL} === 'QV'}"/>
+                                <m:DatePicker id="idQuotaValidTo" value="{quotaModel>VALIDITY_TO}" valueFormat="yyyy-MM-dd" displayFormat="long" visible="{= ${quotaModel>/editPopup} &amp;&amp; ${quotaModel>LEVEL} === 'QV'}" />
+                            </m:HBox>
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>Contract_No}"/>
+                        <template>
+                            <m:Text text="{quotaModel>CONTRACT_UNIQUE_ID}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>Brand_Description}"/>
+                        <template>
+                            <m:Text text="{quotaModel>BRAND_DESCRIPTION}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>Supplier}"/>
+                        <template>
+                            <m:Text text="{quotaModel>SUPPLIER}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>SupplierName}"/>
+                        <template>
+                            <m:Text text="{quotaModel>SUPPLIERNAME}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>DUNS_NUMBER}"/>
+                        <template>
+                            <m:Text text="{quotaModel>DUNS_NUMBER}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>Distribution_valid_from}"/>
+                        <template>
+                            <m:Text text="{quotaModel>DISTR_VALIDITY_FROM}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>Distribution_valid_to}"/>
+                        <template>
+                            <m:Text text="{quotaModel>DISTR_VALIDITY_TO}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>CONTRACT_WORKFLOW_STATUS}"/>
+                        <template>
+                            <m:Text text="{quotaModel>CONTRACT_WORKFLOW_STATUS}" />
+                        </template>
+                    </Column> 
+                    <Column width="7rem">
+                        <m:Label text="{quotaModel>/quotaCol}"/>
+                        <template>
+                            <m:Text text="{quotaModel>QUOTA}" />
+                        </template>
+                    </Column>
+                    <Column width="7rem" visible="{quotaModel>/editPopup}">
+                        <m:Label text="{i18n>New_Quota}"/>
+                        <template>
+                            <m:Input value= "{= ${quotaModel>NEW_QUOTA} ? ${quotaModel>NEW_QUOTA} : ${quotaModel>QUOTA}}" 
+                                     change="OnEnterNewQuota" visible="{= ${quotaModel>LEVEL} ==='CT'}"
+                            />
+                        </template>
+                    </Column>
+                    <Column width="7rem">
+                        <m:Label text="{i18n>Overall_Quota}"/>
+                        <template>
+                            <m:ObjectStatus text="{quotaModel>OVERALL_QUOTA}" visible="{= ${quotaModel>LEVEL} ==='QV'}" state="{path: 'quotaModel>OVERALL_QUOTA', formatter: '.formatterOverallQuotaValue'}"/>
+                        </template>
+                    </Column>                    
+                    <Column width="7rem">
+                        <m:Label text="{i18n>PurchaseOrderCode}"/>
+                        <template>
+                        <m:HBox>
+                            <m:ComboBox 
+                                items="{
+                                    path:'/xVWKSxNLP_CCTR_I_GENRICDOMNVH',
+                                    filters:[{
+                                        path:'SAPDataDictionaryDomain',
+                                        operator:'EQ',
+                                        value1:'/VWKS/NLP_CTR_PURHASE_ORD_CODE'
+                                    }]
+                                }"  
+                                selectedKey="{quotaModel>PURCHASE_ORD_CODE}"                              
+                                visible="{= ${quotaModel>LEVEL} ==='CT' &amp;&amp; ${quotaModel>/editPopup}}"                   
+                             >
+                               <core:Item key="{DomainValue}" text="{
+                                    parts: [
+                                    'i18n>codeDescriptionTemplate',
+                                    'DomainText',
+                                    'DomainValue'
+                                    ],
+                                    formatter: 'formatMessage'
+                                    }"/>                              
+                             </m:ComboBox>
+                             <m:Text  text="{quotaModel>PURCHASE_ORD_CODE_TEXT}" visible="{= !${quotaModel>/editPopup}}"/>
+                              </m:HBox>
+                        </template>
+                    </Column>
+                </columns>
+            </TreeTable>
+		</VBox>
+		<buttons>
+            <Button id="idCheckRefreshBtn" text="{i18n>QuotaDialogCheckRefreshButton}" visible="{quotaModel>/editPopup}" press="onQuotaDialogCheckRefresh"/>
+            <Button id="idSaveReleaseBtn" text="{i18n>QuotaDialogSaveReleaseButton}" visible="{quotaModel>/editPopup}" press="onQuotaDialogSaveRelease"/>
+			<Button id="idCloseBtn" text="{quotaModel>/cancelButtonText}" press="onQuotaDialogClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

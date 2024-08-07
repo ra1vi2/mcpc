@@ -1,0 +1,100 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <uxap:ObjectPageSection id="idRMSTableSection" title="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>ManualRMSSection}" titleUppercase="false">
+        <uxap:ObjectPageSubSection id="idRMSTableSubSection">
+            <smartTable:SmartTable id="idRMSTableSmartTable" tableType="ResponsiveTable" beforeRebindTable=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onBeforeRebindRMSTable" showRowCount="true" 
+            header="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>ManualRMSTable}" entitySet="xVWKSxNLP_CCTR_C_CCTR_MAN_RMS"
+            tableBindingPath="to_RMSData" demandPopin="true" useExportToExcel="true"
+            useVariantManagement="true" useTablePersonalisation="true" requestAtLeastFields="MaterialIdentNumber,SteelPool,SPMatIdNum,SteelPooling_FC,xvwksxnlp_valid_from,xvwksxnlp_valid_to" enableAutoBinding="true" enableAutoColumnWidth="true"
+            class="sapMListShowSeparatorsAll" customData:useSmartField="true" editable="{ui>/editable}" >
+                <smartTable:customToolbar>
+                    <OverflowToolbar id="idRMSToolbar">
+                        <ToolbarSpacer id="idRMSToolbarSpacer"/>                      
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+                <Table id="idManualRMSInternalTable" mode="None">
+                    <columns>
+                        <!-- Material Identification Number -->
+                        <Column id="idMaterialIdentNumberCustomColumn" width = "8em">
+                            <Text id="idMaterialIdentNumberCustomColumnLabel" text="{/#xVWKSxNLP_CCTR_C_CCTR_MAN_RMSType/MaterialIdentNumber/@sap:label}"/>
+                            <customData>
+                                <core:CustomData id="idMaterialIndentNumberCustomData" key="p13nData" value='\{"columnKey": "MaterialIdentNumber","columnIndex":"0","leadingProperty": "MaterialIdentNumber"}'/>
+                            </customData>
+                        </Column>
+                        <!-- Steel Pooling -->
+                        <Column id="idSteelPoolingCustomColumn" width = "5em">
+                            <Text id="idSteelPoolingCustomColumnLabel" text="{/#xVWKSxNLP_CCTR_C_CCTR_MAN_RMSType/SteelPool/@sap:label}" tooltip = "{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>SteelPool}"/>
+                            <customData>
+                                <core:CustomData id="idSteelPoolingCustomData" key="p13nData" value='\{"columnKey": "SteelPool","columnIndex":"2","leadingProperty": "SteelPool", "additionalProperty": "SteelPooling_FC"}'/>
+                            </customData>
+                        </Column>
+                        <!-- Vaidity Range -->
+                        <Column id="idValidityRangeCustomColumn" width = "8em">
+                            <Text id="idValidityRangeCustomColumnLabel" text="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>ValidityRange}"/>
+                            <customData>
+                                <core:CustomData id="idValidityRangeCustomData" key="p13nData" value='\{"columnKey": "xvwksxnlp_valid_from","columnIndex":"1","leadingProperty": "xvwksxnlp_valid_from", "additionalProperty": "xvwksxnlp_valid_to"}'/>
+                            </customData>
+                        </Column>
+                        <!-- SP Material Identification No -->
+                        <Column id="idSpMatIDCustomColumn" width = "8em">
+                            <Text id="idSpMatIDCustomColumnLabel" text="{/#xVWKSxNLP_CCTR_C_CCTR_MAN_RMSType/SPMatIdNum/@sap:label}"/>
+                            <customData>
+                                <core:CustomData id="idSpMatIDCustomData" key="p13nData" value='\{"columnKey": "SPMatIdNum","columnIndex":"3","leadingProperty": "SPMatIdNum"}'/>
+                            </customData>
+                        </Column>
+                        <Column id="idSpmIdNumberCustomColumn" width = "8em">
+                            <Text id="idSpmIdNumberCustomColumnLabel" text="{/#xVWKSxNLP_CCTR_C_CCTR_MAN_RMSType/SpmIdNumber/@sap:label}"/>
+                            <customData>
+                                <core:CustomData id="idSpmIdNumberCustomData" key="p13nData" value='\{"columnKey": "SpmIdNumber","columnIndex":"4","leadingProperty": "SpmIdNumber","additionalProperty": "MatIdNumText"}'/>
+                            </customData>
+                        </Column>
+                        <!-- Material Price Unit -->
+                        <Column id="idMaterPriceUnit" width = "7em">
+                        <Text id="idVMaterPriceUnitCustomColumnLabel" text="{/#xVWKSxNLP_CCTR_C_CCTR_MAN_RMSType/MatPriceUnit/@sap:label}"/>
+							<customData>
+								<core:CustomData id="idMaterPriceUnitCustomData" key="p13nData"
+									value='\{"columnKey": "MatPriceUnit","columnIndex":"6","leadingProperty": "MatPriceUnit"}'/>
+							</customData>
+						</Column>                   
+                    </columns>
+                    <items>
+                        <ColumnListItem id="idManualRMSCustomColumnList">
+                            <cells>
+                                <HBox id="idManualRMSHBox">
+                                   
+                                    <Text id="idMaterialIdentNumberCustomColumnValue" text="{MaterialIdentNumber}" visible="true"></Text>
+                                </HBox>
+                                <HBox id="idSteelPoolingHBox">
+                                    <CheckBox id="idSteelPoolingCheckBox" selected="{SteelPool}"  enabled="{= ${SteelPooling_FC} &amp;&amp; ${ui>/editable}}"/>
+                                </HBox>
+
+                                <HBox id="idValidityRangeHBox">
+                                    <Text id="idValidityRangeCustomColumnValue"  text ="{path: 'xvwksxnlp_valid_from', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMM dd, yyyy' } } - 
+                                    {path: 'xvwksxnlp_valid_to', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMM dd, yyyy' } }"/>
+                                    
+                                </HBox>
+                                <HBox id="idSpMatIdHBox">
+                                    <Input id="idSpMatIdColumnInput" value="{path: 'SPMatIdNum',type: 'sap.ui.model.type.String', constraints: {search: '^[A-Za-z0-9]+$'}}" required = "true" valueState= "{= !${SPMatIdNum} ? 'Error' : 'None'}" 
+                                        visible="{= (${ui>/editable} &amp;&amp; ${SteelPool}) ? true : false}" maxLength="14" ></Input>
+                                    <Text id="idSpMatIdCustomColumnValue" text="{SPMatIdNum}"  visible="{= (${SteelPool} ? true : false) &amp;&amp; (${ui>/editable} ? false : true)}"></Text>                                   
+                                </HBox> 
+                                 <HBox id="idSpmIdNumberHBox">                                    
+                                     <smartfield:SmartField id="idMaterialIdentificationSmartField" value="{SpmIdNumber}" 
+                                     editable="{ui>/editable}" enabled="{SteelPooling_FC}" mandatory="true"  valueState= "{= !${SpmIdNumber} ? 'Error' : 'None'}" />                                                                    
+                                </HBox> 
+                                <HBox id="idMaterPriceUnitHBox">
+                                    <smartfield:SmartField id="idMaterPriceUnitSmartField" value="{MatPriceUnit}" editable="{ui>/editable}"/>
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </smartTable:SmartTable>
+        </uxap:ObjectPageSubSection>
+    </uxap:ObjectPageSection>
+</core:FragmentDefinition>

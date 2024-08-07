@@ -1,0 +1,8 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns="sap.m"> 
+    <Button id="idCtrHeadCustomCopyDialog" text="{i18n>CopyButtonText}" visible="{= !${ui>/editable} }" tooltip="{i18n>CopyButtonText}" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onCustomCopyContract" />
+
+    <Button id="idCtrHeadManageQuotaBtn" text="{i18n>ManageQuotaButtonLabel}" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onManageQuotaButtonPress" />
+    <Button id="idHierCtrPFORelatedLinkBtn" text="{i18n>PFORelatedLink}" icon="sap-icon://process" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onPFOLinkPress" />
+    <Button id="idAlternativePartsButton" text="{i18n>AlternativePartsButtonLabel}" tooltip="{i18n>AlternativePartsButtonLabel}" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleAlternativePartCall" visible="{= ${ProcessIndicator} === 'P' ? true : false}" />
+</core:FragmentDefinition>

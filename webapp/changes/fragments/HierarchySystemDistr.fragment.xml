@@ -1,0 +1,66 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core'
+    xmlns='sap.m'
+    xmlns:uxap="sap.uxap"
+    xmlns:layout="sap.ui.layout"
+    xmlns:table="sap.ui.table"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    core:require="{Constants: 'vwks/nlp/s2p/mm/pctrcentral/manage/changes/utils/Constants'}">
+    <!--  add your xml here -->
+    <uxap:ObjectPageSection id="idHieSystemDistrSection" title="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>SystemDistrSection}" titleUppercase="false" visible="{SysDetVisFlag}">
+        <uxap:ObjectPageSubSection id="idHieSystemDistrSubSection">
+            <uxap:blocks>
+            <uxap:ObjectPageLazyLoader id="idHieSystemDistrSubSectionLazyLoader" stashed="true">
+            <layout:VerticalLayout id="idHieSystemDistrLayout" class="sapUiContentPadding" width="100%">
+                <smartTable:SmartTable id="idHieSystemDistrSmartTable" tableType="Table" showRowCount="true" 
+                header="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>SystemDistrSmartTableTableHeader}" 
+                tableBindingPath="to_SystDetails" requestAtLeastFields="IsSelected,LogicalSystemID,IsSelected_fc" 
+                entitySet="xVWKSxNLP_CCTR_C_MULTIDLTP" demandPopin="true" useVariantManagement="true" 
+                useTablePersonalisation="true" enableAutoBinding="true" class="sapUiResponsiveContentPadding">
+                    <Table id="idHieSystemDistrTable" selectionChange=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleSystemDistTableSelectionChange">
+                        <columns>                          	                                           
+                            <Column id="idForSelectedCol" >
+                                <Text id="idForSelectedText" text="{/#xVWKSxNLP_CCTR_C_MULTIDLTPType/IsSelected/@sap:label}"/>
+                                <customData>
+                                    <core:CustomData id="idForSelectedCore" key="p13nData" value='\{"columnKey": "IsSelected", "leadingProperty": "IsSelected", "columnIndex": "0"}'/>
+                                </customData>
+                            </Column>
+                            <Column id="idForLogicalCol">
+                                <Text id="idForLogicalText" text="{/#xVWKSxNLP_CCTR_C_MULTIDLTPType/LogicalSystem/@sap:label}"/>
+                                <customData>
+                                    <core:CustomData id="idForLogicalCore" key="p13nData" value='\{"columnKey": "LogicalSystem", "leadingProperty": "LogicalSystem", "columnIndex": "1"}'/>
+                                </customData>
+                            </Column>
+                            <Column id="idForLogicalSystemCol">
+                                <Text id="idForLogicalSystemText" text="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP>LogicalSystemText}"/>
+                                <customData>
+                                    <core:CustomData id="idForLogicalSystemCore" key="p13nData" value='\{"columnKey": "LogicalSystemID", "leadingProperty": "LogicalSystemID", "columnIndex": "2"}'/>
+                                </customData>
+                            </Column>                           
+                        </columns>
+                        <items>
+                            <ColumnListItem id ="idForColList">
+                                <cells>                                 	
+                                    <HBox id="idHbox" >
+                                     <Select id="idComboBox" items="{SystemDistModel>/items}" 
+                                      selectedKey="{IsSelected}" visible="{ui>/editable}"
+                                      enabled="{= ${IsSelected_fc} !== 1 }"
+                                    > 
+                                    <core:Item id="idcoreExp" key="{SystemDistModel>key}" text="{SystemDistModel>text}"/>  
+                                    </Select>                      
+                                    <Text id="idForSelectedCellText" 
+                                    text="{ path: 'IsSelected', formatter: '.extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.formatSelectedValue'}" visible="{= !${ui>/editable}}"></Text>
+                                    </HBox>
+                                    <Text id="idForLogicalCellText" text="{LogicalSystem}"></Text>
+                                    <Text id="idForLogicalSystemCellText" text="{LogicalSystemID}"/>                                                                 
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </smartTable:SmartTable>
+            </layout:VerticalLayout>
+            </uxap:ObjectPageLazyLoader>
+            </uxap:blocks>
+        </uxap:ObjectPageSubSection>
+    </uxap:ObjectPageSection>
+</core:FragmentDefinition>

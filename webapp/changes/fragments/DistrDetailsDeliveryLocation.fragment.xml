@@ -1,0 +1,13 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns="sap.m" xmlns:smartform="sap.ui.comp.smartform"
+	xmlns:smartfield="sap.ui.comp.smartfield" xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<smartform:GroupElement id="idLocationElement" visible="true">
+		<smartform:elements>
+            <VBox id="idDeliveryLocationVBox">
+				<Label id="idDeliveryLocationLabel" text="{/#C_CntrlPurContrHierItemDistrTPType/DeliveryLocation/@sap:label}"/>
+				<Link id="idDeliveryLocationLink" text="{DeliveryLocationName} ({DeliveryLocation})" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onLocationPress" visible="{= !!${DeliveryLocation}}" />
+                <Text id="idDeliveryLocationText" emptyIndicatorMode="On" text="" visible="{= !${DeliveryLocation}}"/>
+            </VBox>
+		</smartform:elements>
+	</smartform:GroupElement>
+</core:FragmentDefinition>

@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Popover id="idAddValidityPeriodPopOver" title="{i18n>AddQuotaPeriodText}" placement="Bottom" modal="true">
+        <content>
+            <VBox id="idVbox" class="sapUiSmallMargin">
+                <Label id="idPlantLabel" text="{i18n>PlantText}" labelFor="idPlantInput" required="true" visible="{quotaModel>/itemLevel}"></Label>
+                <Input id="idPlantInput" value="{quotaModel>/plant}" valueHelpRequest="onPlantValueHelpRequest" visible="{quotaModel>/itemLevel}" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"></Input>
+
+                <Label id="idLabelforValidFrom" text="{i18n>ValidFromText}" labelFor="idValidFrom" required="true"/>
+                <DatePicker id="idValidFrom" class="sapUiSmallMarginBottom" valueFormat="yyyy-MM-dd" displayFormat="long" />
+
+                <Label id="idLabelforValidTo" text="{i18n>ValidToText}" labelFor="idValidTo" required="true"/>
+                <DatePicker id="idValidTo" class="sapUiSmallMarginBottom" valueFormat="yyyy-MM-dd" displayFormat="long"/>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button id="idAddValidityPeriodBtn" text="{i18n>AddText}" type="Transparent" press="onAddLinePress"/>
+                <Button id="idClose" text="{i18n>CloseText}" type="Transparent" press="onAddPopoverClosePress"/>
+            </OverflowToolbar>
+        </footer>
+    </Popover>
+</core:FragmentDefinition> 
+
+
+
+
+
+
+

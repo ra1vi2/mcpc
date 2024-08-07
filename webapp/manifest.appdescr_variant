@@ -1,0 +1,406 @@
+{
+    "fileName": "manifest",
+    "layer": "VENDOR",
+    "fileType": "appdescr_variant",
+    "reference": "ui.s2p.mm.pur.central.ctr.sts1",
+    "id": "vwks.nlp.s2p.mm.pctrcentral.manage",
+    "namespace": "apps/ui.s2p.mm.pur.central.ctr.sts1/appVariants/vwks.nlp.s2p.mm.pctrcentral.manage/",
+    "version": "1.0.0",
+    "content": [
+        {
+            "changeType": "appdescr_ui5_addLibraries",
+            "content": {
+                "libraries": {
+                    "vwks.nlp.s2p.mm.reuse.lib": {
+                        "minVersion": "1.0.0",
+                        "lazy": false
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addLibraries",
+            "content": {
+                "libraries": {
+                    "sap.nw.core.gbt.notes.lib.reuse": {
+                        "minVersion": "1.0.0",
+                        "lazy": false
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addComponentUsages",
+            "content": {
+                "componentUsages": {
+                    "notesReuseComponent": {
+                        "name": "sap.nw.core.gbt.notes.lib.reuse.notes4smarttemplate",
+                        "settings": {}
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewDataSource",
+            "content": {
+                "dataSource": {
+                    "NLP_FND_PCF_SRV": {
+                        "uri": "/sap/opu/odata/vwks/NLP_FND_PCF_SRV/",
+                        "type": "OData",
+                        "settings": {
+                            "odataVersion": "2.0"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewDataSource",
+            "content": {
+                "dataSource": {
+                    "NLP_INTG_PMAT_EXT_MANAGE_SRV": {
+                        "uri": "/sap/opu/odata/vwks/NLP_INTG_PMAT_EXT_MANAGE_SRV/",
+                        "type": "OData",
+                        "settings": {
+                            "odataVersion": "2.0"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewDataSource",
+            "content": {
+                "dataSource": {
+                    "SGBT_NTE_CDS_API_D_SRV": {
+                        "uri": "/sap/opu/odata/sap/SGBT_NTE_CDS_API_D_SRV/",
+                        "type": "OData",
+                        "settings": {
+                            "odataVersion": "2.0"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModel",
+            "content": {
+                "model": {
+                    "NOTES": {
+                        "dataSource": "SGBT_NTE_CDS_API_D_SRV",
+                        "settings": {}
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModel",
+            "content": {
+                "model": {
+                    "PCF": {
+                        "dataSource": "NLP_FND_PCF_SRV",
+                        "settings": {}
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModel",
+            "content": {
+                "model": {
+                    "PMAT": {
+                        "dataSource": "NLP_INTG_PMAT_EXT_MANAGE_SRV",
+                        "settings": {}
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "Supplier": {
+                        "semanticObject": "Supplier",
+                        "action": "displayFactSheet"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "MCPC": {
+                        "semanticObject": "CentralPurchaseContract",
+                        "action": "manage"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "CreateContractDistribution": {
+                        "semanticObject": "CentralPurContractDistribution",
+                        "action": "createRequest"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "PFO": {
+                        "semanticObject": "ProcessFlow",
+                        "action": "overview"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "MQ": {
+                        "semanticObject": "Quota",
+                        "action": "manage"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "PMAT": {
+                        "semanticObject": "PMaterial",
+                        "action": "manage"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "PCF": {
+                        "semanticObject": "CommunicationRequest",
+                        "action": "manage"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "MPRC": {
+                        "semanticObject": "ProcurementHubPRItem",
+                        "action": "manage"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_addNewOutbound",
+            "content": {
+                "outbound": {
+                    "SourcingProject": {
+                        "semanticObject": "SourcingProject",
+                        "action": "manage"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_app_setTitle",
+            "content": {},
+            "texts": {
+                "i18n": "i18n/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "@i18n"
+            },
+            "texts": {
+                "i18n": "i18n/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP"
+            },
+            "texts": {
+                "i18n": "i18n/ListReport/C_CentralPurchaseContractTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP"
+            },
+            "texts": {
+                "i18n": "i18n/ListReport/C_CntrlPurContrHierHdrTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CentralPurchaseContractTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CentralPurchaseContractTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurchaseContractItemTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CntrlPurchaseContractItemTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurContrHierHdrTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CntrlPurContrHierHdrTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CentralPurchaseContractTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CntrlPurContrHierHdrTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurContrHierItemTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CntrlPurchaseContractItemTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurContrHierItemTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CntrlPurContrHierItemTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurContrHierItemTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CntrlPurContrHierItemDistrTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_ui5_addNewModelEnhanceWith",
+            "content": {
+                "modelId": "i18n|sap.suite.ui.generic.template.ObjectPage|C_CntrlPurContrItmCndnAmountTP"
+            },
+            "texts": {
+                "i18n": "i18n/ObjectPage/C_CntrlPurContrItmCndnAmountTP/i18n.properties"
+            }
+        },
+        {
+            "changeType": "appdescr_fiori_setRegistrationIds",
+            "content": {
+                "registrationIds": [
+                    "F3144"
+                ]
+            }
+        },
+        {
+            "changeType": "appdescr_app_setAch",
+            "content": {
+                "ach": "XX-PROJ-CDP-TEST-808"
+            }
+        },
+        {
+            "changeType": "appdescr_app_addAnnotationsToOData",
+            "content": {
+                "dataSourceId": "mainService",
+                "annotations": [
+                    "customAnnotations"
+                ],
+                "annotationsInsertPosition": "END",
+                "dataSource": {
+                    "customAnnotations": {
+                        "uri": "changes/annotations/annotations.xml",
+                        "type": "ODataAnnotation"
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_ui_generic_app_changePageConfiguration",
+            "content": {
+                "parentPage": {
+                    "component": "sap.suite.ui.generic.template.ObjectPage",
+                    "entitySet": "C_CntrlPurContrHierItemDistrTP"
+                },
+                "entityPropertyChange": {
+                    "propertyPath": "embeddedComponents",
+                    "operation": "UPSERT",
+                    "propertyValue": {
+                        "hierdistribution::Notes": {
+                            "id": "hierdistribution::Notes",
+                            "componentUsage": "notesReuseComponent",
+                            "title": "{{Notes}}",
+                            "settings": {
+                                "objectId": "{ parts: [{path:'CentralPurchaseContract'}, {path:'CentralPurchaseContractItem', {path: 'DistributionKey'}] , formatter: 'vwks.nlp.s2p.mm.pctrcentral.manage.changes.utils.Formatter.returnNotesCCTRItemDistrKey'}",
+                                "objectNodeType": "{ObjectNodeType}",
+                                "draftUUID": "{DraftUUID}",
+                                "noteTypes": "{path:'NoteTypes', formatter:'vwks.nlp.s2p.mm.pctrcentral.manage.changes.utils.Formatter.returnNotesJSON'}"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "changeType": "appdescr_ui_generic_app_changePageConfiguration",
+            "content": {
+                "parentPage": {
+                    "component": "sap.suite.ui.generic.template.ObjectPage",
+                    "entitySet": "C_CntrlPurContrlDistributionTP"
+                },
+                "entityPropertyChange": {
+                    "propertyPath": "embeddedComponents",
+                    "operation": "UPSERT",
+                    "propertyValue": {
+                        "distribution::Notes": {
+                            "id": "distribution::Notes",
+                            "componentUsage": "notesReuseComponent",
+                            "title": "{{Notes}}",
+                            "settings": {
+                                "objectId": "{ parts: [{path:'CentralPurchaseContract'}, {path:'CentralPurchaseContractItem', {path: 'DistributionKey'}] , formatter: 'vwks.nlp.s2p.mm.pctrcentral.manage.changes.utils.Formatter.returnNotesCCTRItemDistrKey'}",
+                                "objectNodeType": "{ObjectNodeType}",
+                                "draftUUID": "{DraftUUID}",
+                                "noteTypes": "{path:'NoteTypes', formatter:'vwks.nlp.s2p.mm.pctrcentral.manage.changes.utils.Formatter.returnNotesJSON'}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

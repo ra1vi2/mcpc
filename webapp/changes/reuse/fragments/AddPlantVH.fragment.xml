@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core">
+    <Dialog contentWidth="80%" contentHeight="60%" horizontalScrolling="false" verticalScrolling="true" title="{i18n>PlantsText}" class="sapUiResponsiveContentPadding">
+        <VBox fitContainer="true">
+            <smartFilterBar:SmartFilterBar id="idPlantlSmartFilterBar" entitySet="C_ProcmtHubPlantVH" useToolbar="true" showFilterConfiguration="true" advancedMode="true" 
+                 enableBasicSearch="false" filterBarExpanded="true">
+            </smartFilterBar:SmartFilterBar>
+            <smarttable:SmartTable id="idPlantSmartTable" header="{i18n>PlantsText}" tableType="ResponsiveTable" 
+                entitySet="C_ProcmtHubPlantVH" useTablePersonalisation="false" initialise="onInitialisePlantSmartTable"
+                initiallyVisibleFields="ProcurementHubSourceSystem,ProcmtHubPlant,ProcmtHubCompanyCode,ProcmtHubPlantName,ProcmtHubPlantUniqueID,ProcmtHubCompanyCodeName" 
+                useExportToExcel="false" useVariantManagement="false" showRowCount="true">
+            </smarttable:SmartTable>
+        </VBox>
+        <buttons>
+            <Button text="{i18n>OKText}" enabled="{quotaModel>/enablePlantValueHelpOK}" press="onPlantOK"/>
+            <Button text="{i18n>CancelText}" press="onPlantClose"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

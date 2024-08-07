@@ -1,0 +1,22 @@
+{
+    "comment": "",
+    "collections": [
+        {
+            "collectionName": "manage central purchase contracts",
+            "folders": [
+                {
+                    "startingFolderPath": "webapp/i18n",
+                    "sourceFilters": [
+                        "**/*.properties"
+                    ]
+                }
+            ]
+        }
+    ],
+    "defaultConfiguration": {
+        "targetFolderPath": ".",
+        "pseudoLocFolderPath": ",",
+        "oneQFolderPath": ".",
+        "targetFileNamingConvention": "[filename]_[langCode].[extension]"
+    }
+}

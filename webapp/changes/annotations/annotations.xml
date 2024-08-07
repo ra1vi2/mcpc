@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/sap/opu/odata/sap/MM_PUR_CNTRL_CTR_MAINTAIN_SRV/$metadata">
+        <edmx:Include Alias="MM_PUR_CNTRL_CTR_MAINTAIN_SRV" Namespace="MM_PUR_CNTRL_CTR_MAINTAIN_SRV" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ui.s2p.mm.pur.central.ctr.sts1.customAnnotations">
+            <!--===============================================================================
+                Entity Type from chosen collection
+                ================================================================================-->
+            <!--===============================================================================
+                Entity Type from chosen navigation property
+                ================================================================================-->
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurchaseContractItemTPType/CntrlPurContractGRQuantity">
+                <Annotation Term="Common.Label" String="{i18n>CentralBrandContractGRQuantity}" />
+            </Annotations>
+            <!-- as part of incident 727434 we are hiding Estimated Price field in brand contract item entity -->
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurchaseContractItemTPType/PurgDocEstimatedPrice">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurchaseContractItemTPType/CntrlPurContractGRAmount">
+                <Annotation Term="Common.Label" String="{i18n>CentralBrandContractGRAmount}" />
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CentralPurchaseContractTPType/PurchasingGroup">
+                <Annotation Term="Common.Label" String="{i18n>LeadPurchasingGroup}" />
+            </Annotations>
+             <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierDistrOvwTPType/PurchasingGroup">
+                <Annotation Term="Common.Label" String="{i18n>LocalPurchasingGroup}" />
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CentralPurchaseContractTPType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n&gt;CentralBrandContractLabel}" />
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n&gt;CentralBrandContractsLabel}" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="PurchasingDocumentName"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="ActivePurchasingDocument"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="RevokedChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>Revoked</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ValidityEndDate</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ValidityEndDateChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ValidityEndDate</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>Revoked</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="UnlimitedValueChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>UnlimitedValue</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PurchaseContractTargetAmount</PropertyPath>
+                                <PropertyPath>PurchaseContractTargetAmount_fc</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/CntrlPurContrItmTargetAmount</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/CntrlPurContrItmTargetAmount_fc</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/TargetQuantity</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/TargetQuantity_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ProcessIndicatorChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ProcessIndicator</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>HdrDisFct_FC</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/PrototypeInfo_FC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath>to_CntrlPurContrHdrDistrTP</NavigationPropertyPath>
+                                <NavigationPropertyPath>to_CntrlPurchaseContractItemTP/to_CntrlPurContrDistributionTP</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ZSBIndicatorChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ZSBIndicator</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/ZSBLaw_Flag</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="PaymentTermsChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PaymentTerms</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PayTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="IncotermChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>IncotermsClassification</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>IncoTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ShippingInstructionChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ShippingInstruction</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ShipInsFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierItemDistrTPType/PurchasingGroup">
+                <Annotation Term="Common.Label" String="{i18n>LocalPurchasingGroup}" />
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierItemDistrTPType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n&gt;CentralGroupContractItemDistributionLabel}" />
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n&gt;CentralGroupContractItemDistributionsLabel}" />
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="CompanyCodeChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>CompanyCode</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>Calloffmonth</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="HierCompanyCodeChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>CompanyCode</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PurchasingOrganization</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="DocumentTypeChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PurchasingDocumentType</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>Calloffmonth</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="PaymentTermsChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PaymentTerms</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PayTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="IncotermChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>IncotermsClassification</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>IncoTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ShippingInstructionChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ShippingInstruction</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ShipInsFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="SkipLCMFlagUpdateOnAgreementIDChange">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>AgreementID</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>to_CentralPurchaseContractTP/SkipLcmVisFlag</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierHdrTPType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n&gt;CentralGroupContractLabel}" />
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n&gt;CentralGroupContractsLabel}" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="PurchasingDocumentName"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="Description">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="ActivePurchasingDocument"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierHdrTPType/PurchasingGroup">
+                <Annotation Term="Common.Label" String="{i18n>LeadPurchasingGroup}" />
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierHdrTPType">
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="RevokedChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>Revoked</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ValidityEndDate</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ValidityEndDateChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ValidityEndDate</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>Revoked</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="UnlimitedValueChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>UnlimitedValue</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PurchaseContractTargetAmount</PropertyPath>
+                                <PropertyPath>PurchaseContractTargetAmount_fc</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/CntrlPurContrItmTargetAmount</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/CntrlPurContrItmTargetAmount_fc</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/TargetQuantity</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/TargetQuantity_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ProcessIndicatorChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ProcessIndicator</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>HdrDisFct_FC</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/PrototypeInfo_FC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath>to_CntrlPurContrHdrDistrTP</NavigationPropertyPath>
+                                <NavigationPropertyPath>to_CntrlPurchaseContractItemTP/to_CntrlPurContrDistributionTP</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ZSBIndicatorChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ZSBIndicator</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/ZSBLaw_Flag</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="PaymentTermsChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PaymentTerms</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PayTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="IncotermChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>IncotermsClassification</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>IncoTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ShippingInstructionChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ShippingInstruction</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ShipInsFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrDistributionTPType/PurchasingGroup">
+                <Annotation Term="Common.Label" String="{i18n>LocalPurchasingGroup}" />
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrDistributionTPType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n&gt;CentralBrandContractItemDistributionLabel}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n&gt;CentralBrandContractItemDistributionsLabel}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value">
+                                    <Apply Function="odata.concat">
+                                        <Path>ActivePurchasingDocument</Path>
+                                        <String>{@i18n>/}</String>
+                                        <Path>CentralPurchaseContractItem</Path>
+                                        <String>{@i18n>/}</String>
+                                        <Path>DistributionKey</Path>
+                                    </Apply>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="PaymentTermsChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PaymentTerms</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PayTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="IncotermChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>IncotermsClassification</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>IncoTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ShippingInstructionChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ShippingInstruction</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ShipInsFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="BrandCompanyCodeChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>CompanyCode</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PurchasingOrganization</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="TakeOverValidityFromHeaderChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>TakeOverValidityFromHeader</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ValidFrom_FC</PropertyPath>
+                                <PropertyPath>ValidTo_FC</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHdrDistrTPType">
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="PaymentTermsChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PaymentTerms</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PayTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="IncotermChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>IncotermsClassification</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>IncoTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ShippingInstructionChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ShippingInstruction</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ShipInsFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierHdrDistrTPType">
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="PaymentTermsChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PaymentTerms</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PayTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="IncotermChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>IncotermsClassification</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>IncoTermFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ShippingInstructionChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>ShippingInstruction</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ShipInsFullText</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurchaseContractItemTPType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n&gt;CentralBrandContractItemLabel}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n&gt;CentralBrandContractItemsLabel}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value">
+                                    <Apply Function="odata.concat">
+                                        <Path>ActivePurchasingDocument</Path>
+                                        <String>{@i18n>/}</String>
+                                        <Path>PurchaseContractItemText</Path>
+                                    </Apply>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="BuildLevelChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>BuildLevel</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ProductionMethod</PropertyPath>
+                                <PropertyPath>PartCapability</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ItemCreationOrDeletion">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceEntities">
+                            <Collection>
+                                <NavigationPropertyPath>to_CntrlPurContrItmCmmdtyQtyTP</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath>to_RMSData</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <!-- as part of incident 727434 we are hiding Estimated Price field in Group contract item entity -->
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierItemTPType/PurchasingPriceIsEstimated">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierItemTPType/PurchasingGroup">
+                <Annotation Term="Common.Label" String="{i18n>LocalPurchasingGroup}" />
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierItemTPType/Unit">
+                <Annotation Term="Common.Label" String="{i18n>OrderUnitOfRawMaterial}" />
+            </Annotations>
+             <Annotations  Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierHdrTPType/Supplier">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Supplier" />
+                        <PropertyValue Property="CollectionPath" String="C_MM_SupplierValueHelp" />
+                        <PropertyValue Property="SearchSupported" Bool="true" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut"> 
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Supplier"/>                                   
+                                    <PropertyValue Property="ValueListProperty" String="Supplier" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">                                  
+                                    <PropertyValue Property="ValueListProperty" String="CompanyCode" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">                                 
+                                    <PropertyValue Property="ValueListProperty" String="SupplierName" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">                                 
+                                    <PropertyValue Property="ValueListProperty" String="Country" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">                                  
+                                    <PropertyValue Property="ValueListProperty" String="CityName" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">                                  
+                                    <PropertyValue Property="ValueListProperty" String="PostalCode" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">                                 
+                                    <PropertyValue Property="ValueListProperty" String="Region" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations> 
+
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrHierItemTPType">
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="{@i18n&gt;CentralGroupContractItemLabel}"/>
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n&gt;CentralGroupContractItemsLabel}"/>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value">
+                                    <Apply Function="odata.concat">
+                                        <Path>ActivePurchasingDocument</Path>
+                                        <String>{@i18n&gt;/}</String>
+                                        <Path>PurchaseContractItemText</Path>
+                                    </Apply>
+                                </PropertyValue>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="BuildLevelChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>BuildLevel</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>ProductionMethod</PropertyPath>
+                                <PropertyPath>PartCapability</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="ItemCreationOrDeletion">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceEntities">
+                            <Collection>
+                                <NavigationPropertyPath>to_CntrlPurContrItmCmmdtyQtyTP</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetEntities">
+                            <Collection>
+                                <NavigationPropertyPath>to_RMSData</NavigationPropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CntrlPurContrItmCmmdtyQtyTPType">
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="RawMaterialDataChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>Commodity</PropertyPath>
+                                <PropertyPath>PurgDocCmmdtyQtyValidFromDate</PropertyPath>
+                                <PropertyPath>PurgDocCmmdtyQtyValidToDate</PropertyPath>
+                                <PropertyPath>CommodityQuantity</PropertyPath>
+                                <PropertyPath>CommodityUnit</PropertyPath>
+                                <PropertyPath>PurgDocCmmdtyQtySqntlNumber</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/MaterialIdentNumber</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/xvwksxnlp_valid_from</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/xvwksxnlp_valid_to</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/OperatingWeight</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/OperatingWeightUom</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/SequenceNo</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/SteelPooling_FC</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/FinalWeightUom</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/MatBasePrice</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/ActMatPrice</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/MatPriceUnit</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/ActMatPriceUnit</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_CPurConHierItmCmmdtyQtyTPType">
+                <Annotation Term="com.sap.vocabularies.Common.v1.SideEffects" Qualifier="RawMaterialDataChanged">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>Commodity</PropertyPath>
+                                <PropertyPath>PurgDocCmmdtyQtyValidFromDate</PropertyPath>
+                                <PropertyPath>PurgDocCmmdtyQtyValidToDate</PropertyPath>
+                                <PropertyPath>CommodityQuantity</PropertyPath>
+                                <PropertyPath>CommodityUnit</PropertyPath>
+                                <PropertyPath>PurgDocCmmdtyQtySqntlNumber</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/MaterialIdentNumber</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/xvwksxnlp_valid_from</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/xvwksxnlp_valid_to</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/OperatingWeight</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/OperatingWeightUom</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/SequenceNo</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/SteelPooling_FC</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/FinalWeightUom</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/MatBasePrice</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/ActMatPrice</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/MatPriceUnit</PropertyPath>
+                                <PropertyPath>to_CntrlPurchaseContractItemTP/to_RMSData/ActMatPriceUnit</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="RawMaterialCycle">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>Commodity</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PurgDocCmmdtyUpdateCycle</PropertyPath>
+                                <PropertyPath>PurgDocCmmdtyUpdateCycle_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.xVWKSxNLP_CCTR_I_ZSBType">
+                <Annotation Term="Common.SideEffects" Qualifier="CalcCost">
+                    <Record Type="Common.SideEffectsType">
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>Price</PropertyPath>
+                                <PropertyPath>PriceCurrency</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PricePreLogistic</PropertyPath>
+                                <PropertyPath>PriceAddedValue</PropertyPath>
+                                <PropertyPath>PriceHandling</PropertyPath>
+                                <PropertyPath>PricepercentagePreLogistic</PropertyPath>
+                                <PropertyPath>PricepercentageAddedValue</PropertyPath>
+                                <PropertyPath>PricepercentageHandling</PropertyPath>
+                                <PropertyPath>PricePercentagePreFinancing</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="PaymentModel">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PaymentModel</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>Price</PropertyPath>
+                                <PropertyPath>PriceCurrency</PropertyPath>
+                                <PropertyPath>PricePreLogistic</PropertyPath>
+                                <PropertyPath>PriceAddedValue</PropertyPath>
+                                <PropertyPath>PriceHandling</PropertyPath>
+                                <PropertyPath>PricepercentagePreLogistic</PropertyPath>
+                                <PropertyPath>PricepercentageAddedValue</PropertyPath>
+                                <PropertyPath>PricepercentageHandling</PropertyPath>
+                                <PropertyPath>PriceTempFlag</PropertyPath>
+                                <PropertyPath>PricePerAssembly</PropertyPath>
+                                <PropertyPath>PriceAsmbCurrency</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="PecentagePreLogisticCalc">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PricepercentagePreLogistic</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PricePreLogistic</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="PecentageAddedValueCalc">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PricepercentageAddedValue</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PriceAddedValue</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="PecentageHandlingCalc">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PricepercentageHandling</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PriceHandling</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="PreLogisticCalc">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PricePreLogistic</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PricepercentagePreLogistic</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="AddedValueCalc">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PriceAddedValue</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PricepercentageAddedValue</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.SideEffects" Qualifier="HandlingCalc">
+                    <Record>
+                        <PropertyValue Property="SourceProperties">
+                            <Collection>
+                                <PropertyPath>PriceHandling</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="TargetProperties">
+                            <Collection>
+                                <PropertyPath>PricepercentageHandling</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+
+            <!-- As part of incident 2370020529 changing labels for PurchasingGroup & CompanyCode we have add UI annotations -->
+            <Annotations Target="MM_PUR_CNTRL_CTR_MAINTAIN_SRV.C_SubordinateCntrlContrTPType">
+                <Annotation Term="UI.FieldGroup" Qualifier="GenInfo1">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>CentralPurchasingOrganizationLabel}"/>
+                                    <PropertyValue Property="Value" Path="PurchasingOrganization"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>LeadPurchasingGroup}"/>
+                                    <PropertyValue Property="Value" Path="PurchasingGroup"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>CompanyCode}"/>
+                                    <PropertyValue Property="Value" Path="CompanyCode"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>ValidFromLabel}"/>
+                                    <PropertyValue Property="Value" Path="ValidityStartDate"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>ValidToLabel}"/>
+                                    <PropertyValue Property="Value" Path="ValidityEndDate"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

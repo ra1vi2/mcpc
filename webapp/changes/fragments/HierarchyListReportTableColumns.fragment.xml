@@ -1,0 +1,42 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Column id="idHierarchyDocHistoryCol">
+		<Text id="idHierarchyDocumentHistoryColText" text="{i18n>DocumentHistoryLabel}" tooltip="{i18n>DocumentHistoryTooltip}"/>
+		<customData>
+			<core:CustomData id="idHierarchyDocHistCustomData" key="p13nData"
+				value='\{"columnKey": "DocumentStatusName", "leadingProperty": "DocumentStatusName","columnIndex" : "1"}'/>
+		</customData>
+	</Column>
+	<!--Supplier Overall Status-->
+	<!-- Removed Sort and Filter properties as part of INC 342644 fix -->
+	<Column id="idCtrHierOverallStatusColumn">
+		<Text id="idCtrHierOverallStatusColumnText" text="{i18n>SupplierOverallStatusLabel}"/>
+		<customData>
+			<core:CustomData id="idCtrHierOverallStatusCustomData" key="p13nData"
+				value='\{ "columnKey": "SupplierOverallStatus", "leadingProperty":"SupplierOverallStatus", "columnIndex" : "2" }'/>
+		</customData>
+	</Column>
+	<!--Pricing Conditions-->
+	<Column id="idHierarchyPricingConditionsIconColumn">
+		<Text id="idHierarchyPricingConditionsIconColumnText"
+			text="{i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP>PricingConditionsText}"/>
+		<customData>
+			<core:CustomData key="p13nData" value='\{"columnKey" : "hierarchyPricingConditionsIconColumn", "columnIndex" : "13"}'
+				id="idHierarchyCustomData"/>
+		</customData>
+	</Column>
+    <!--Jump to Distribution Line-->
+    <Column id="idHierarchyDistributionLineIconColumn">
+        <Text id="idHierarchyDistributionLineIconColumnText" text="{i18n|sap.suite.ui.generic.template.ListReport|C_CentralPurchaseContractTP>JumpToDistributionColumnLabel}"/>
+        <customData>
+            <core:CustomData id="idHierarchyDistributionLineCustomData" key="p13nData" value='\{"leadingProperty": "Distribution_Icon_FC", "columnKey" : "Distribution_Icon_FC", "columnIndex" : "14"}' />
+        </customData>
+    </Column>
+    <!--Jump to Quota Details-->
+    <Column id="idQuotaColumn">
+		<Text id="idQuotaColumnText" text="{i18n>QuotaDetails}"/>
+		<customData>
+			<core:CustomData id="idQuotaCustomData" key="p13nData" value='\{ "columnKey": "Quota", "leadingProperty":"Quota", "columnIndex" : "26" }'/>
+        </customData>
+	</Column>
+</core:FragmentDefinition>

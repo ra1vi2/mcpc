@@ -1,0 +1,9 @@
+<!-- Use stable and unique IDs!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns='sap.m' xmlns:smartform="sap.ui.comp.smartform" xmlns:smartfield="sap.ui.comp.smartfield">
+    <!-- Skip LCM -->
+    <smartform:GroupElement id="idHierarchyGroupSkipLCMGroupElement" label="{/#C_CntrlPurContrHierHdrTPType/LcmSkip/@sap:label}" visible="{SkipLcmVisFlag}">
+        <smartform:elements>
+            <Switch id="idHierarchyGroupSkipLCMSwitch" class="sapUiSmallMarginEnd" state="{= !!${LcmSkip}}" enabled="{ui>/editable}" customTextOn=" " customTextOff=" " change=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleLcmSkipChange" />
+        </smartform:elements>
+    </smartform:GroupElement>
+</core:FragmentDefinition>

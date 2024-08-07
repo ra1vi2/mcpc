@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog id="idCopyContractDialog" horizontalScrolling="false" verticalScrolling="true"
+     title="{i18n>ChooseFacets}" class="sapUiResponsiveContentPadding">
+        <VBox fitContainer="true">
+           <CheckBox id="idSelectDeselect" selected="{selectedFacets>/selectAll}" text="{i18n>SelectDeselectAll}" select="onSelectAllCheck"/>
+           <CheckBox id="idSupplierChk" visible="{facets>/IsSupplierVisible}" select="onSelectFacet" selected="{selectedFacets>/supplier}" text="{i18n>Supplier}" />
+           <CheckBox id="idReferenceChk" visible="{facets>/IsReferenceVisible}" select="onSelectFacet" selected="{selectedFacets>/reference}" text="{i18n>Reference}" />
+           <CheckBox id="idHeaderNotes" visible="{facets>/IsHeaderNotesVisible}" select="onSelectFacet" selected="{selectedFacets>/headerNotes}" text="{i18n>HeaderNotes}" />
+           <CheckBox id="idItemNotes" visible="{facets>/IsItemNotesVisible}" select="onSelectFacet" selected="{selectedFacets>/itemNotes}" text="{i18n>ItemNotes}" />
+           <CheckBox  id="idManualRMS" visible="{facets>/IsManualRMSVisible}" select="onSelectFacet" selected="{selectedFacets>/manualRMS}" text="{i18n>ManualRMS}" />
+           <CheckBox id="idCondSupplier" visible="{facets>/IsCondSupplierCostVisible}" select="onSelectFacet" selected="{selectedFacets>/condSupplierCost}" text="{i18n>CondSupplierdevelopmentcost}" />
+        </VBox>
+        <buttons>
+            <Button id="idCopyContractBtn" text="{i18n>CopyContractButtonLabel}" tooltip="{i18n>CopyContractButtonLabel}" type="Emphasized" press="onCopyContractOK"/>
+            <Button id="idCancelConBtn" text="{i18n>CancelText}" tooltip="{i18n>CancelText}" press="onCopyContractClose"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

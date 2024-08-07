@@ -1,0 +1,61 @@
+<!-- Use stable and unique IDs!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns:smartform="sap.ui.comp.smartform" xmlns:smartfield="sap.ui.comp.smartfield" xmlns='sap.m'>
+    <smartform:Group id="idGroup">
+        <smartform:groupElements>
+            <!-- plant usage key on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionPlantusekeyGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionPlantusekey" value="{plantusekey}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- plant expiration key on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionplantexpkeyGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionPlantexpkey" value="{plantexpkey}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- plant usage date on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionPlantusedateGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionPlantusedat" value="{plantusedat}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Plant Experiration Date on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionPlantExperDatGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionPlantExperDat" value="{PlantExperDat}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- check id on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionCheckidtGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributioncheckid" value="{checkid}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Type of Receivement on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionTypeOfReceivementtGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionTypeOfReceivement" value="{Type_of_Receivement}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Part Types on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionPartTypesGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionPartTypes" value="{Part_Types}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Set on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionMDSetGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionMDSet" value="{MD_Set}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Module type on Item Distribution -->
+            <smartform:GroupElement id="idHierarchicalDistributionModule_typetGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idHierarchicalDistributionModule_type" value="{Module_type}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+        </smartform:groupElements>
+    </smartform:Group>
+</core:FragmentDefinition>

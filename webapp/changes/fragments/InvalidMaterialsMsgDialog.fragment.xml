@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:layout="sap.ui.layout" core:require="{ formatMessage: 'sap/base/strings/formatMessage'}">
+    <Dialog contentWidth="40%" contentHeight="70%" class="sapUiSizeCompact" verticalScrolling="false">
+        <content>
+            <VBox id="idInvalidMaterialsMsgDialogVBox" fitContainer="true">
+                <MessageView id="idInvalidMaterialsMsgView" showDetailsPageHeader="false" items="{materialMsg>/}">
+                    <items>
+                        <MessageItem
+                            title="{
+                                    parts: [
+                                        'i18n>InvalidMaterialsMsg',
+                                        'materialMsg>'
+                                    ],
+                                    formatter: 'formatMessage'
+                                }"
+                        />
+                    </items>
+                    <layoutData>
+                        <FlexItemData minHeight="200px" />
+                    </layoutData>
+                </MessageView>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button id="idInvalidMaterialsMsgViewCloseBtn" text="{i18n>CloseText}" tooltip="{i18n>CloseText}" press="onCloseInvalidMaterialsMsgDialog" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

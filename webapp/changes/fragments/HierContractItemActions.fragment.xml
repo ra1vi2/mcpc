@@ -1,0 +1,7 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns="sap.m">
+    <Button id="idHierCtrItmManageQuotaBtn" text="{i18n>ManageQuotaButtonLabel}" press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.onManageQuotaButtonPress"/>
+	<Button id="idItemAlternativePartsButton" text="{i18n>AlternativePartsItemButtonLabel}" tooltip="{i18n>AlternativePartsItemButtonLabel}"
+		visible="{= ${ProcessIndicator} === 'P' ? true : false}"
+		press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleAlternativePartCall"></Button>
+</core:FragmentDefinition>

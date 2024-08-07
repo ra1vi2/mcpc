@@ -1,0 +1,287 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:uxap="sap.uxap" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:layout="sap.ui.layout" xmlns:table="sap.ui.table" xmlns:smartfield="sap.ui.comp.smartfield"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    core:require="{Constants: 'vwks/nlp/s2p/mm/pctrcentral/manage/changes/utils/Constants'}">
+	<!-- Analytical Table -->
+	<smartTable:SmartTable id="idZsbComponentSmartTable" entitySet="xVWKSxNLP_CCTR_I_READ_ZSB" tableType="AnalyticalTable"
+		showFullScreenButton="true" header="{i18n>ZSBTableHeader}" tableBindingPath="to_ZSBArea" showRowCount="true" useTablePersonalisation="true"
+		visible="{= !${ui>/editable} }" beforeRebindTable="onBeforeZsbRebindTable" enableAutoBinding="true"
+        requestAtLeastFields="PricePreLogistic,PricepercentageAddedValue,PriceHandling,PricepercentageHandling"
+		ignoreFromPersonalisation="CentralContract,CentralContractItem,ManualExchangeRate,TakeRate,PriceTempFlag,SuperLawContract,DeltaLawContract,PricePreLogistic,PricePrelogisticAPFlag,PriceAddedAPFlag,PriceHandlingAPFlag,PreFinancingCostAPFlag,PricePerAssembly,OptionalCase,LawIndicator,PropertyCode,PlantPlanningArea,PricePreFinancing,PricepercentagePreLogistic,PricePercentagePreFinancing,PriceAddedValue,PriceHandling,PricepercentageHandling,PricepercentageAddedValue"  class="sapUiResponsiveContentPadding">
+		<smartTable:customToolbar>
+			<OverflowToolbar id="idZsbToolbar">
+				<ComboBox id="idPlantComboBox" change="onPlantChange" placeholder="{i18n>Plants}"></ComboBox>
+				<DatePicker id="idValuationDateDisplay" placeholder="{i18n>ValuationDate}" enabled="{ui>/editable}"
+					value="{path:'ValDate', type:'sap.ui.model.type.Date', formatOptions: { style: 'medium', strictParsing: true, UTC: true}}" width="10rem"/>
+				<ToolbarSpacer id="idZsbToolbarSpacer"/>
+				<!--Actions disabled in display mode-->
+				<Button id="idPullFromBOMButtonDisplay" text="{i18n>PullFromBOM}" tooltip="{i18n>PullFromBOM}" type="Transparent" enabled="{ui>/editable}"
+					press="handlePullFromBOM" visible="{= ${ZSBPullFromBOM_FC} &amp;&amp; !${Subcontracting}&amp;&amp; !${DeltaLawContractFlag}}"/>
+				<Button id="idFindContractsDisplay" text="{i18n>FindContracts}" tooltip="{i18n>FindContracts}" type="Transparent" enabled="{ui>/editable}"
+					press="handleFindContracts"
+					 visible="{= ${ZSBFindContract_FC} &amp;&amp; ! ${Subcontracting} &amp;&amp; !${DeltaLawContractFlag}}"/>
+				<Button id="idCalculatePriceButtonDisplay" text="{i18n>CalculatePrice}" tooltip="{i18n>CalculatePrice}" type="Transparent"
+					visible="{=  ${ZSBCalculatePrice_FC} &amp;&amp; ! ${Subcontracting} &amp;&amp; !${DeltaLawContractFlag}}" enabled="{ui>/editable}" press="handleCalculatePrice"/>
+				<Button id="idTakeOverZSBConditionsButtonDisplay" text="{i18n>TakeOverZSBConditions}" type="Transparent" enabled="{ui>/editable}"
+					visible="{= ! ${ZSBLaw_Flag} &amp;&amp; ${TakeOverZSBCond_FC} &amp;&amp; !${DeltaLawContractFlag}}" tooltip="{i18n>TakeOverZSBConditions}" press="handleTakeOverZSBConditions"/>
+				<Button id="idTakeOverLAWConditionsButtonDisplay" text="{i18n>TakeOverLAWConditions}" type="Transparent" visible="{= ${ZSBLaw_Flag} &amp;&amp; ${ZSBTakeOverLawCond_FC}&amp;&amp; !${DeltaLawContractFlag}}"
+					enabled="{ui>/editable}" tooltip="{i18n>TakeOverLAWConditions}" press="handleTakeOverZSBConditions"/>
+                <Button id="idCreateDeltaLAWContractsDisplay" text="{i18n>CreateDeltaLAWContracts}" type="Transparent" tooltip="{i18n>CreateDeltaLAWContracts}" enabled="{ui>/editable}"
+					press="handleCreateDeltaLAWContracts" visible="{= ${DeltaLawContract_FC}&amp;&amp; !${DeltaLawContractFlag}}"/>
+				<Button id="idAddLineManuallyDisplay" icon="sap-icon://add" type="Transparent" tooltip="{i18n>AddLineManually}" enabled="{ui>/editable}"
+					press="handleAddLineManually" visible="{= ${ZSBAddLine_FC}&amp;&amp; !${DeltaLawContractFlag}}"/>
+				<Button id="idDeleteLineDisplay" icon="sap-icon://delete" type="Transparent" tooltip="{i18n>DeleteLine}" enabled="{ui>/editable}"
+					press="handleDeleteLine" visible="{= ${ZSBDeleteLine_FC} &amp;&amp; !${DeltaLawContractFlag}}"/>
+			</OverflowToolbar>
+		</smartTable:customToolbar>
+		<table:AnalyticalTable id="idZSBCompTable" selectionMode="None">
+		 <table:columns>
+		 		<!-- As part of incidnet 748788 fix we have added custom column to enable render white space property for material number column -->
+		 		<table:AnalyticalColumn id="idZSBCompMaterialNumberColumn" width="11rem" leadingProperty="Material" filterProperty="Material" sortProperty="Material">
+					<Label id="idZSBCompMaterialNumberLabel"
+						text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/Material/@sap:label}" tooltip="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/Material/@sap:label}"/>
+					<table:template>
+						<Text id="idZsbCompMaterialNumberLink" text="{Material}" tooltip="{Material}" renderWhitespace="true"></Text>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idZSBMaterialNumberCustomData" key="p13nData"
+							value='\{"columnKey": "MaterialKey", "leadingProperty": "Material", "columnIndex": "0" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+				<table:AnalyticalColumn id="idZSBCompContractItemColumn" width="11rem" leadingProperty="ContractNumberItemUniqueId" filterProperty="ContractNumberItemUniqueId" sortProperty="ContractNumberItemUniqueId">
+					<Label id="idZSBCompContractItemLabel"
+						text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/CentralContract/@sap:label} / {/#xVWKSxNLP_CCTR_I_READ_ZSBType/CentralContractItem/@sap:label}"
+						tooltip="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/CentralContract/@sap:label} / {/#xVWKSxNLP_CCTR_I_READ_ZSBType/CentralContractItem/@sap:label}"/>
+					<table:template>
+						<Link id="idZsbCompContractItemLink" visible="{= !!${CentralContract} &amp;&amp; !!${CentralContractItem} }"
+							text="{CentralContract} / {CentralContractItem}" press="handleContractItemNav"></Link>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idZSBContractCustomData" key="p13nData"
+							value='\{"columnKey": "BrandCentralContractAndItem", "leadingProperty": "ContractNumberItemUniqueId", "columnIndex": "6" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+				<table:AnalyticalColumn id="idZSBCompPriceTempFlagColumnTable" width="9rem"  sortProperty= "PriceTempFlag" filterProperty="PriceTempFlag">
+					<Label id="idZSBCompPriceTempFlagLabelTable" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PriceTempFlag/@sap:label}" tooltip="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PriceTempFlag/@sap:label}"/>
+                    <table:template>
+						<Text id="idPriceTempFlagTextTable" text="{ path: 'PriceTempFlag', formatter: '.formatBooleanValue' }"/>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idPriceTempFlagCustomDataTable" key="p13nData"
+							value='\{"columnKey": "PriceTempFlagKey", "leadingProperty": "PriceTempFlag", "columnIndex": "14" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+				<table:AnalyticalColumn id="idManualExchangeRateColumnTable" width="9rem" hAlign="Right" sortProperty="ManualExchangeRate"  filterProperty="ManualExchangeRate" >
+					<Label id="idManualExchangeRateLabelTable" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/ManualExchangeRate/@sap:label}"/>
+					<table:template>
+							<!-- As part of incidnet-748805 fix we have removed input and text fileds and changed to Smart field -->
+						<smartfield:SmartField id="idManualExchangeRateTable" value="{ManualExchangeRate}" editable="false"/>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idManualExchangeRateCustomDataTable" key="p13nData"
+							value='\{"columnKey": "ManualExchangeRateKey", "leadingProperty": "ManualExchangeRate", "columnIndex": "15" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Price Pre Logistic -->
+                <table:AnalyticalColumn id="idPricePreLogisticColumn" width="9rem" hAlign="Right" sortProperty="PricePreLogistic" filterProperty="PricePreLogistic">
+					<Label id="idPricePreLogisticLabel" textAlign="Right" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PricePreLogistic/@sap:label}"/>
+					<table:template>
+                        <HBox justifyContent="End" alignItems="Center">
+                            <ObjectStatus id="idPricePreLogisticObjectStatus" class="sapUiLargeMarginEnd" text="{PricePreLogistic}" state="{= ${PricePrelogisticAPFlag} === 'A' ? 'Information' : 'None'}" />
+                            <ObjectStatus id="idPricePreLogisticText" text="{PricePrelogisticCurrency}" state="{= ${PricePrelogisticAPFlag} === 'A' ? 'Information' : 'None'}"> </ObjectStatus>
+                        </HBox>
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idPricePreLogisticCustomData" key="p13nData"
+							value='\{"columnKey": "BrandPricePreLogisticKey", "leadingProperty": "PricePreLogistic", "additionalProperty": "PricePrelogisticAPFlag,PricePrelogisticCurrency", "columnIndex": "17" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Price percentage Pre Logistic -->
+				<table:AnalyticalColumn id="idPercPricePreLogisticColumn" width="9rem" hAlign="Right" sortProperty="PricepercentagePreLogistic" filterProperty="PricepercentagePreLogistic">
+					<Label id="idPercPricePreLogisticLabel" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PricepercentagePreLogistic/@sap:label}"/>
+					<table:template>
+                        <ObjectStatus id="idPercPricePreLogisticObjectStatus" text="{PricepercentagePreLogistic}" state="{= ${PricePrelogisticAPFlag} === 'P' ? 'Information' : 'None'}" />
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idPercPricePreLogisticCustomData" key="p13nData"
+							value='\{"columnKey": "BrandPricepercentagePreLogisticKey", "leadingProperty": "PricepercentagePreLogistic", "additionalProperty": "PricePrelogisticAPFlag", "columnIndex": "18" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Price Added Value -->
+				<table:AnalyticalColumn id="idPriceAddedValueColumn" width="9rem" hAlign="Right" sortProperty="PriceAddedValue" filterProperty="PriceAddedValue">
+					<Label id="idPriceAddedValueLabel" textAlign="Right" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PriceAddedValue/@sap:label}"/>
+					<table:template>
+                        <HBox justifyContent="End" alignItems="Center">
+                            <ObjectStatus id="idPriceAddedValueObjectStatus" class="sapUiLargeMarginEnd" text="{PriceAddedValue}" state="{= ${PriceAddedAPFlag} === 'A' ? 'Information' : 'None'}"/>
+                            <ObjectStatus id="idPriceAddedValueText" text="{priceAddedCurrency}" state="{= ${PriceAddedAPFlag} === 'A' ? 'Information' : 'None'}"> </ObjectStatus>
+                        </HBox>
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idPriceAddedValueCustomData" key="p13nData"
+							value='\{"columnKey": "BrandPriceAddedValueKey", "leadingProperty": "PriceAddedValue", "additionalProperty": "PriceAddedAPFlag,priceAddedCurrency", "columnIndex": "20" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Price percentage Added Value -->
+				<table:AnalyticalColumn id="idPercPriceAddedValueColumn" width="9rem" hAlign="Right" sortProperty="PricepercentageAddedValue" filterProperty="PricepercentageAddedValue">
+					<Label id="idPercPriceAddedValueLabel" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PricepercentageAddedValue/@sap:label}"/>
+					<table:template>
+                        <ObjectStatus id="idPercPriceAddedValueObjectStatus" text="{PricepercentageAddedValue}" state="{= ${PriceAddedAPFlag} === 'P' ? 'Information' : 'None'}" />
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idPercPriceAddedValueCustomData" key="p13nData"
+							value='\{"columnKey": "BrandPricepercentageAddedValueKey", "leadingProperty": "PricepercentageAddedValue", "additionalProperty": "PriceAddedAPFlag", "columnIndex": "21" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Price Handling -->
+				<table:AnalyticalColumn id="idPriceHandlingColumn" width="9rem" hAlign="Right" sortProperty="PriceHandling" filterProperty="PriceHandling">
+					<Label id="idPriceHandlingLabel" textAlign="Right" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PriceHandling/@sap:label}"/>
+					<table:template>
+                        <HBox justifyContent="End" alignItems="Center">
+                            <ObjectStatus id="idPriceHandlingObjectStatus" class="sapUiLargeMarginEnd" text="{PriceHandling}" state="{= ${PriceHandlingAPFlag} === 'A' ? 'Information' : 'None'}"/>
+                            <ObjectStatus id="idPriceHandlingText" text="{PriceHandlingCurrency}" state="{= ${PriceHandlingAPFlag} === 'A' ? 'Information' : 'None'}"> </ObjectStatus>
+                        </HBox>
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idPriceHandlingCustomData" key="p13nData"
+							value='\{"columnKey": "BrandPriceHandlingKey", "leadingProperty": "PriceHandling,PriceHandlingCurrency", "columnIndex": "23" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Price percentage Handling -->
+				<table:AnalyticalColumn id="idPercPriceHandlingColumn" width="9rem" hAlign="Right" sortProperty="PricepercentageHandling"  filterProperty="PricepercentageHandling" >
+					<Label id="idPercPriceHandlingLabel" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PricepercentageHandling/@sap:label}"/>
+					<table:template>
+					    <ObjectStatus id="idPercPriceHandlingObjectStatus" text="{PricepercentageHandling}" state="{= ${PriceHandlingAPFlag} === 'P' ? 'Information' : 'None'}" />
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idPricepercentageHandlingCustomData" key="p13nData"
+							value='\{"columnKey": "BrandPricepercentageHandlingKey", "leadingProperty": "PricepercentageHandling", "columnIndex": "24" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Price Per Assembly -->
+                <table:AnalyticalColumn id="idPricePerAssemblyColumnTable" width="11rem" visible="{= ${ZSBIndicator} !== Constants.ZSB_INDICATOR.DIR}" sortProperty="PricePerAssembly" filterProperty="PricePerAssembly">
+					<Label id="idPricePerAssemblyColumnLabelTable" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PricePerAssembly/@sap:label}"/>
+					<table:template>
+                        <HBox justifyContent="End" alignItems="Center">
+                            <Text id="idPricePerAssemblyTable" class="sapUiLargeMarginEnd" textAlign="Right" text="{PricePerAssembly}"/>
+                            <Text id="idPricePerAssemblyCurrencyText" text="{PriceAsmbCurrency}"> </Text>
+                        </HBox>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idPricePerAssemblyustomDataTable" key="p13nData"
+							value='\{"columnKey": "PricePerAssemblyKey", "leadingProperty": "PricePerAssembly", "additionalProperty":"PriceAsmbCurrency", "columnIndex": "25" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Optional Case -->
+                <table:AnalyticalColumn id="idOptionalCaseColumnTable" width="9rem" visible="{= ${ZSBIndicator} === Constants.ZSB_INDICATOR.ZSB ||  ${ZSBLaw_Flag} }" sortProperty="OptionalCase" filterProperty="OptionalCase">
+					<Label id="idOptionalCaseColumnLabelTable" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/OptionalCase/@sap:label}"/>
+					<table:template>
+						<smartfield:SmartField id="idOptionalCaseTable" textAlign="Right" value="{OptionalCase}"/>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idOptionalCaseustomDataTable" key="p13nData"
+							value='\{"columnKey": "OptionalCaseKey", "leadingProperty": "OptionalCase", "columnIndex": "26" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- LAW indicator -->
+                <table:AnalyticalColumn id="idLawIndicatorColumnTable" width="9rem" visible="{ZSBLaw_Flag}" sortProperty="LawIndicator" filterProperty="LawIndicator">
+					<Label id="idLawIndicatorColumnLabelTable" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/LawIndicator/@sap:label}"/>
+					<table:template>
+						<smartfield:SmartField id="idLawIndicatorTable" textAlign="Right" value="{LawIndicator}"/>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idLawIndicatorustomDataTable" key="p13nData"
+							value='\{"columnKey": "LawIndicatorKey", "leadingProperty": "LawIndicator", "columnIndex": "27" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Property Code -->
+                <table:AnalyticalColumn id="idPropertyCodeColumnTable" width="9rem" visible="{ZSBLaw_Flag}" sortProperty="PropertyCode" filterProperty="PropertyCode">
+					<Label id="idPropertyCodeColumnLabelTable" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PropertyCode/@sap:label}"/>
+					<table:template>
+						<smartfield:SmartField id="idPropertyCodeTable" textAlign="Right" value="{PropertyCode}"/>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idPropertyCodeustomDataTable" key="p13nData"
+							value='\{"columnKey": "PropertyCodeKey", "leadingProperty": "PropertyCode", "columnIndex": "28" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Plant Planning Area -->
+                <table:AnalyticalColumn id="idPlantPlanningColumnTable" width="9rem" visible="{ZSBLaw_Flag}" sortProperty="PlantPlanningArea" filterProperty="PlantPlanningArea">
+					<Label id="idPlantPlanningColumnLabelTable" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PlantPlanningArea/@sap:label}"/>
+					<table:template>
+						<smartfield:SmartField id="idPlantPlanningTable" textAlign="Right" value="{PlantPlanningArea}"/>
+					</table:template>
+					<table:customData>
+						<core:CustomData id="idPlantPlanningustomDataTable" key="p13nData"
+							value='\{"columnKey": "PlantPlanningAreaKey", "leadingProperty": "PlantPlanningArea", "columnIndex": "29" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+              
+                <!-- Pre-Financing -->
+                <table:AnalyticalColumn id="idPricePreFinancingColumn" width="9rem" hAlign="Right" visible="{ZSBLaw_Flag}" sortProperty="PricePreFinancing" filterProperty="PricePreFinancing">
+					<Label id="idPricePreFinancingLabel" textAlign="Right" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PricePreFinancing/@sap:label}"/>
+					<table:template>
+					    <HBox justifyContent="End" alignItems="Center">
+                            <ObjectStatus id="idPricePreFinancingObjectStatus" class="sapUiLargeMarginEnd" text="{PricePreFinancing}" state="{= ${PreFinancingCostAPFlag} === 'A' ? 'Information' : 'None'}" />
+                            <ObjectStatus id="idPricePreFinancingText" text="{PricePreFinancingCurrency}" state="{= ${PreFinancingCostAPFlag} === 'A' ? 'Information' : 'None'}"> </ObjectStatus>
+                        </HBox>
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idPricePreFinancingCustomData" key="p13nData"
+							value='\{"columnKey": "PricePreFinancingKey", "leadingProperty": "PricePreFinancing,PricePreFinancingCurrency", "columnIndex": "31" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- PricePercentagePreFinancing -->
+                <table:AnalyticalColumn id="idPricePercentagePreFinancingColumn" width="9rem" hAlign="Right" visible="{ZSBLaw_Flag}" sortProperty="PricePercentagePreFinancing" filterProperty="PricePercentagePreFinancing">
+					<Label id="idPricePercentagePreFinancingLabel" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/PricePercentagePreFinancing/@sap:label}"/>
+					<table:template>
+					    <ObjectStatus id="idPricePercentagePreFinancingObjectStatus" text="{PricePercentagePreFinancing}" state="{= ${PreFinancingCostAPFlag} === 'P' ? 'Information' : 'None'}" />
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idPricePercentagePreFinancingCustomData" key="p13nData"
+							value='\{"columnKey": "PricePercentagePreFinancingKey", "leadingProperty": "PricePercentagePreFinancing", "columnIndex": "33" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Take Rate -->
+                <table:AnalyticalColumn id="idTakeRategColumn" width="9rem" hAlign="Right" visible="{ZSBLaw_Flag}" sortProperty="TakeRate" filterProperty="TakeRate">
+					<Label id="idTakeRateLabel" textAlign="Right" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/TakeRate/@sap:label}"/>
+					<table:template>
+					    <HBox justifyContent="End" alignItems="Center">
+                            <ObjectStatus id="idTakeRateObjectStatus" class="sapUiLargeMarginEnd" text="{TakeRate}"/>
+                        </HBox>
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idTakeRateCustomData" key="p13nData"
+							value='\{"columnKey": "TakeRateKey", "leadingProperty": "TakeRate", "columnIndex": "34" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Delta Law Contract -->
+                <table:AnalyticalColumn id="idDeltaLawContractgColumn" width="9rem" hAlign="Right" visible="{DeltaLawContract_FC}" sortProperty="DeltaLawContract" filterProperty="DeltaLawContract">
+					<Label id="idDeltaLawContractLabel" textAlign="Right" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/DeltaLawContract/@sap:label}"/>
+					<table:template>
+					    <HBox justifyContent="End" alignItems="Center">
+                            <Link id="idDeltaLawContractLink" class="sapUiLargeMarginEnd" text="{DeltaLawContract}" press="handleDeltaLawContractPress"/>
+                        </HBox>
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idDeltaLawContractCustomData" key="p13nData"
+							value='\{"columnKey": "DeltaLawContractKey", "leadingProperty": "DeltaLawContract", "columnIndex": "35" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+                <!-- Super Law Contract -->
+                <table:AnalyticalColumn id="idSuperLawContractgColumn" width="9rem" hAlign="Right" visible="{SuperLawContract_FC}" sortProperty="SuperLawContract" filterProperty="SuperLawContract">
+					<Label id="idSuperLawContractLabel" textAlign="Right" text="{/#xVWKSxNLP_CCTR_I_READ_ZSBType/SuperLawContract/@sap:label}"/>
+					<table:template>
+					    <HBox justifyContent="End" alignItems="Center">
+                            <Link id="idSuperLawContractObjectStatus" class="sapUiLargeMarginEnd" text="{SuperLawContract}" press="handleSuperLawContractPress"/>
+                        </HBox>
+                    </table:template>
+					<table:customData>
+						<core:CustomData id="idSuperLawContractCustomData" key="p13nData"
+							value='\{"columnKey": "SuperLawContractKey", "leadingProperty": "SuperLawContract", "columnIndex": "36" \}'/>
+					</table:customData>
+				</table:AnalyticalColumn>
+			</table:columns>
+		</table:AnalyticalTable> 
+	</smartTable:SmartTable>
+</core:FragmentDefinition>

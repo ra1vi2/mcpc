@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:smarttable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Dialog contentWidth="80%" contentHeight="60%" horizontalScrolling="false" verticalScrolling="true" title="{reusableValueHelpModel>/dialogHeader}" resizable="true" draggable="true" class="sapUiResponsiveContentPadding">
+        <VBox fitContainer="true">
+            <smartFilterBar:SmartFilterBar id="idReusableValueHelplSmartFilterBar" entitySet="{reusableValueHelpModel>/entitySet}" useToolbar="true" 
+                showFilterConfiguration="false" advancedMode="true" enableBasicSearch="true" filterBarExpanded="false" basicSearchFieldName="{reusableValueHelpModel>/basicSearchFieldName}">
+            </smartFilterBar:SmartFilterBar>
+            <smarttable:SmartTable id="idReusableValueHelpSmartTable" header="{reusableValueHelpModel>/tableHeader}" tableType="ResponsiveTable" 
+                entitySet="{reusableValueHelpModel>/entitySet}" useTablePersonalisation="true" showTablePersonalisation="false" initialise="onInitialiseReusableVHSmartTable" beforeRebindTable="onReusableVHSmartTableBeforeRebind"
+                initiallyVisibleFields="{reusableValueHelpModel>/initiallyVisibleFields}" useExportToExcel="false" useVariantManagement="false" showRowCount="true" customData:p13nDialogSettings="{filter:{visible:false}}">
+                <Table id="idReusableInnerTable" sticky="ColumnHeaders" growing="true" growingScrollToLoad="true" growingThreshold="100"/>
+            </smarttable:SmartTable>
+        </VBox>
+        <buttons>
+            <Button id="idOKTextBtn" text="{i18n>OKText}" press="onReusableValueHelpOkButtonPress" visible="{reusableValueHelpModel>/IsOkVisible}" tooltip="{i18n>OKText}"/>
+            <Button id="idCancelTextBtn" text="{i18n>CancelText}" press="onReusableValueHelpClose" tooltip="{i18n>CancelText}"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

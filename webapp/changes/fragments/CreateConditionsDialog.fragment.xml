@@ -1,0 +1,159 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
+    <Dialog id="idCreateConditionsDialog" title="{i18n>CreateConditionsText}" contentWidth="35%" resizable="true" draggable="true" afterClose="handleCreateConditionDialogClose">
+        <content>
+            <VBox id="idMessagesVbox" items="{createConditionsModel>/createConditionMessages}" class="sapUiTinyMargin">
+                <MessageStrip text="{createConditionsModel>message}" type="{ path: 'createConditionsModel>severity', formatter: '.getMessageStripType' }" showIcon="true" showCloseButton="true" class="sapUiTinyMarginBottom">
+                </MessageStrip>
+            </VBox>
+            <VBox id="idFieldsVbox" class="sapUiTinyMargin sapUiSmallMarginBegin sapUiSmallMarginEnd">
+                <CheckBox text="{i18n>PlantDependentCheckBoxText}" class="sapUiSmallMarginBottom" select="onPlanDependentSelect"/>
+
+                <Label id="idPlantLabel" text="{i18n>PlantText}" labelFor="idPlantInput" required="true" visible="{createConditionsModel>/showPlant}"></Label>
+                <MultiInput id="idPlantInput" class="sapUiSmallMarginBottom" maxLength="4" 
+                    liveChange="onPlantLiveChange" valueHelpRequest="onPlantValueHelpRequest" visible="{createConditionsModel>/showPlant}" valueState="{createConditionsModel>/plantError}" showSuggestion="true" suggestionRows="{path: '/xVWKSxNLP_C_PLANTSYSTEM_VH',templateShareable: false, length: 5000, suspended: true}" suggestionItemSelected="onPlantSuggestionSelect" showValueHelp="true" valueHelpOnly="false"  tokenUpdate="onTokenUpdate">
+                    <suggestionColumns>
+                        <Column id="idConnectedPlantCol">
+                            <Label id="idConnectedPlantColLabel" text="{i18n>ConnectedPlant}"></Label>
+                        </Column>
+                        <Column id="idCompanyCodeCol">
+                            <Label id="idCompanyCodeColLabel" text="{i18n>CompanyCode}"></Label>
+                        </Column>
+                        <Column id="idConnectedSystemIDCol">
+                            <Label id="idConnectedSystemIDColLabel" text="{i18n>ConnectedSystemID}"></Label>
+                        </Column>
+                        <Column id="idConnectedSysNameCol">
+                            <Label id="idConnectedSysNameColLabel" text="{i18n>ConnectedSysName}"></Label>
+                        </Column>
+                    </suggestionColumns>
+                    <suggestionRows>
+                        <ColumnListItem>
+                            <Label id="idProcmtHubPlantCell" text="{ProcmtHubPlant}"></Label>
+                            <Label id="idProcmtHubCompanyCode" text="{ProcmtHubCompanyCode}"></Label>
+                            <Label id="idProcurementHubSourceSystem" text="{ProcurementHubSourceSystem}"></Label>
+                            <Label id="idProcurementHubSourceSystemName" text="{ProcurementHubSourceSystemName}"></Label>
+                        </ColumnListItem>
+                    </suggestionRows>
+                </MultiInput>
+
+                <Label id="idConnectedSystemLabel" text="{i18n>ConnectedSystem}" labelFor="idConnectedSystemInput" required="false" visible="false"></Label>
+                <Input id="idConnectedSystemInput" class="sapUiSmallMarginBottom" value="{createConditionsModel>/connectedSystem}" maxLength="4" liveChange="onConnectedSystemLiveChange" valueHelpRequest="onConnectedSystemValueHelpRequest" visible="false" enabled="false" valueState="{createConditionsModel>/connectedSystemError}" showSuggestion="true" suggestionRows="{path: '/C_ProcmtHubBackendSrceSystemVH', templateShareable: false, suspended: true}" suggestionItemSelected="onConnectedSuggestionSelect" showValueHelp="true" valueHelpOnly="false">
+                    <suggestionColumns>
+                        <Column id="idConnectedSystemID">
+                            <Label id="idConnectedSystemIDLabel" text="{i18n>ConnectedSystemID}"></Label>
+                        </Column>
+                        <Column id="idConnectedSystemName">
+                            <Label id="idConnectedSystemNameLabel" text="{i18n>ConnectedSystemName}"></Label>
+                        </Column>
+                    </suggestionColumns>
+                    <suggestionRows>
+                        <ColumnListItem>
+                            <Label id="idProcurementHubSourceSystemCell" text="{ProcurementHubSourceSystem}"></Label>
+                            <Label id="idProcurementHubSourceSystemNameCell" text="{ProcurementHubSourceSystemName}"></Label>
+                        </ColumnListItem>
+                    </suggestionRows>
+                </Input>
+
+                <Label id="idConditionTypeLabel" text="{i18n>ConditionType}" labelFor="idConditionTypeInput" required="true"></Label>
+                <Input id="idConditionTypeInput" class="sapUiSmallMarginBottom"
+                    showSuggestion="true" 
+                    value="{createConditionsModel>/conditionType}" 
+                    valueHelpRequest="onConditionTypeValueHelpRequest" 
+                    valueState="{createConditionsModel>/conditionTypeError}" 
+                    showValueHelp="true" 
+                    valueHelpOnly="false"
+                    liveChange="onCreatConditionLiveChange" 
+                    suggestionItemSelected="onConditionTypeSuggestionSelect">
+                    <suggestionColumns>
+                        <Column id="idConditionTypeIDCol">
+                            <Label id="idConditionTypeIDColLabel" text="{i18n>ConditionTypeID}"></Label>
+                        </Column>
+                        <Column id="idConditionTypeDescriptionCol">
+                            <Label id="ididConditionTypeDescriptionColLabel" text="{i18n>ConditionTypeDescription}"></Label>
+                        </Column>
+                    </suggestionColumns>
+                </Input>
+                <Label id="idLabelforValidFrom" text="{i18n>ValidFromText}" labelFor="idValidFrom" required="true"/>
+                <HBox id="HBoxforValidFrom"  width="50%">
+                <DatePicker id="idValidFrom" class="sapUiSmallMarginBottom sapUiLargeMarginEnd" valueFormat="yyyy.MM.dd" valueState="{createConditionsModel>/validFromError}" displayFormat="dd.MM.yyyy" 
+                    value="{
+                        path: 'createConditionsModel>/validFrom',
+                        type : 'sap.ui.model.type.Date', 
+                        formatOptions: {
+                            pattern: 'dd.MM.yyyy',
+                            UTC: true
+                        }
+                    }"/>
+                </HBox>
+                <HBox id="HBoxforValidTo">
+                <HBox id="HBoxforValidToInner" width="50%">
+                    <VBox id="VboxforValidTo">
+                        <Label id="idLabelforValidTo" class="sapUiLargeMarginEnd" text="{i18n>ValidToText}" labelFor="idValidTo" required="true" />
+                        <DatePicker
+                            id="idValidTo"
+                            class="sapUiSmallMarginBottom sapUiLargeMarginEnd"
+                            valueState="{createConditionsModel>/validToError}"
+                            value="{
+                        path: 'createConditionsModel>/validTo',
+                        type : 'sap.ui.model.type.Date', 
+                        formatOptions: {
+                            pattern: 'dd.MM.yyyy',
+                            UTC: true
+                        }
+                    }"
+                        />
+                    </VBox>
+                    </HBox>
+                    <HBox id="HBoxforSwitch" width="50%">
+                    <VBox id="VboxforSwitchInner">
+                        <Label id="idLabelforWSwitch" class="sapUiLargeMarginBegin" text="{i18n>ExpirationDateTxt}" labelFor="idNoExpSwitch" />
+                        <Switch id="idNoExpSwitch" class="sapUiLargeMarginBegin" state="true" change="onNoExpSelect" />
+                    </VBox>
+                </HBox>
+                </HBox>
+                <Label id="idChangeReasonLabel" text="{i18n>ChangeReason}" labelFor="idChangeReasonInput" required="true"></Label>
+                <Input id="idChangeReasonInput" class="sapUiSmallMarginBottom" suggestionRows="{path:'/xVWKSxNLP_I_CONDCHNGREASON', templateShareable: false, length: 5000, suspended: true}" value="{createConditionsModel>/changeReason}" valueHelpRequest="onChangeReasonValueHelpRequest" showSuggestion="true" showValueHelp="true" valueHelpOnly="false" valueState="{createConditionsModel>/changeReasonError}" maxLength="{= parseInt(${/#I_PurgConditionChangeReasonType/ConditionChangeReason/@maxLength}, 10)}"
+                    liveChange="onCreatConditionLiveChange">                
+                    <suggestionColumns>
+                        <Column id="idChangeReasonIDCol">
+                            <Label id="idChangeReasonIDLabel" text="{i18n>ChangeReasonID}"></Label>
+                        </Column>
+                        <Column id="idChangeReasonDescription">
+                            <Label  id="idChangeReasonDescriptionLabel" text="{i18n>ChangeReasonDescription}"></Label>
+                        </Column>
+                    </suggestionColumns>
+                    <suggestionRows>
+                        <ColumnListItem>
+                            <Label id="idConditionChangeReason" text="{ConditionChangeReason}"></Label>
+                            <Label id="idConditionChangeReasonText" text="{Description}"></Label>
+                        </ColumnListItem>
+                    </suggestionRows>
+                </Input>
+
+                <HBox id="idAmountHbox" visible="{= ${createConditionsModel>/conditionCalcType} === 'A'}">
+                    <VBox id="idAmountVbox">
+                        <Label id="idAmountLabel" text="{i18n>Amount}" labelFor="idAmountInput" required="true"></Label>
+                        <HBox id="idCurrencyHbox">
+                            <Input id="idAmountInput" value="{createConditionsModel>/amount}" type="Number" width="17rem" valueState="{createConditionsModel>/amountError}"></Input>
+                            <Input id="idCurrencyInput" value="{createConditionsModel>/currency}" valueState="{createConditionsModel>/currencyError}" maxLength="3" width="8rem" valueHelpRequest="onCurrencyValueHelpRequest" showSuggestion="true" showValueHelp="true" valueHelpOnly="false" class="sapUiSmallMarginBegin"></Input>
+                        </HBox>
+                    </VBox>
+                </HBox>
+                <VBox id="idPercentage" visible="{= ${createConditionsModel>/conditionCalcType} === 'P'}">
+                    <Label id="idPercentageLabel" text="Percentage" required="true"/>
+                    <HBox id="idPercentageHBox">
+                        <Input id="idPercentageInput" type="Number" width="17rem" value="{createConditionsModel>/percentage}" valueState="{createConditionsModel>/percentageError}" description="%" />
+                    </HBox>
+                </VBox>
+            </VBox>
+
+        </content>
+        <beginButton>
+            <Button id="idCreateConditionsButton" text="{i18n>CreateConditionsButtonText}" type="Emphasized" tooltip="{i18n>CreateConditionsButtonText}" press="handleCreateButtonPress"/>
+        </beginButton>
+        <endButton>
+            <Button id="idCreateCndCancelButton" text="{i18n>CancelButtonText}" tooltip="{i18n>CancelButtonText}" press="handleCreateConditionDialogClose"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

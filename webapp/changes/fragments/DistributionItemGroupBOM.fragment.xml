@@ -1,0 +1,76 @@
+<!-- Use stable and unique IDs!-->
+<core:FragmentDefinition xmlns:core='sap.ui.core' xmlns='sap.m' xmlns:smartform="sap.ui.comp.smartform" xmlns:smartfield="sap.ui.comp.smartfield">
+    <smartform:Group id="idGroup">
+        <smartform:groupElements>
+            <smartform:GroupElement id="idLocalRequestTextGroupElement">
+                <smartform:elements>
+                    <VBox id= "idVBoxLocalRequestText">
+                        <Label id="idLocalRequetstText" text="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CentralPurchaseContractTP>LocalRequestText}" class="sapUiTinyMarginBottom"/>
+                        <core:Icon
+                            id="idLocalRequestTextIcon"
+                            tooltip="{i18n|sap.suite.ui.generic.template.ObjectPage|C_CentralPurchaseContractTP>LocalRequestText}"
+                            src="sap-icon://message-information"
+                            width="20%"
+                            color="Default"
+                            press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleLocalRequestTextIcon"
+                        />
+                    </VBox>
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- plant usage key on Item Distribution -->
+            <smartform:GroupElement id="idDistributionPlantusekeyGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionPlantusekey" value="{plantusekey}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- plant expiration key on Item Distribution -->
+            <smartform:GroupElement id="idDistributionplantexpkeyGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionPlantexpkey" value="{plantexpkey}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- plant usage date on Item Distribution -->
+            <smartform:GroupElement id="idDistributionplantusedattGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionPlantusedat" value="{plantusedat}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Plant Experiration Date on Item Distribution -->
+            <smartform:GroupElement id="idDistributionPlantExperDatGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionPlantExperDat" value="{PlantExperDat}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- check id on Item Distribution -->
+            <smartform:GroupElement id="idDistributioncheckidtGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionCheckId" value="{checkid}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Type of Receivement on Item Distribution -->
+            <smartform:GroupElement id="idDistributionTypeOfReceivementtGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionTypeOfReceivement" value="{Type_of_Receivement}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Part Types on Item Distribution -->
+            <smartform:GroupElement id="idDistributionPartTypesGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionPartTypes" value="{Part_Types}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Set on Item Distribution -->
+            <smartform:GroupElement id="idDistributionMDSetGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionMDSet" value="{MD_Set}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+            <!-- Module type on Item Distribution -->
+            <smartform:GroupElement id="idDistributionModuleTypetGroupElement">
+                <smartform:elements>
+                    <smartfield:SmartField id="idDistributionModuleType" value="{Module_type}" editable="false" />
+                </smartform:elements>
+            </smartform:GroupElement>
+        </smartform:groupElements>
+    </smartform:Group>
+</core:FragmentDefinition>

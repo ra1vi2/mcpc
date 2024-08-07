@@ -1,0 +1,7 @@
+<!-- Use stable and unique id's!-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Button id="idCopyConditionsButton" text="{i18n>CopyConditionsText}" tooltip="{i18n>CopyConditionsText}" visible="{ui>/editable}"
+		press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleCopyConditionsButtonPress"/>
+    <Button id="idCreateConditionsButton" text="{i18n>CreateConditionsText}" tooltip="{i18n>CreateConditionsText}" visible="{ui>/editable}"
+		press=".extension.vwks.nlp.s2p.mm.pctrcentral.manage.ObjectPageExt.handleCreateConditionsButtonPress"/>
+</core:FragmentDefinition>

@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+    <Dialog id="idCopyInfoContractSuccessDialog" title="{i18n>CopyInfoContractSuccessDialogTitle}" resizable="false" draggable="true" state="Success" type="Message" afterClose="onAfterCloseCopyInfoContractSuccessDialog">
+        <content>
+            <l:VerticalLayout class="sapUiContentPadding" width="100%">
+                <l:content>
+                    <Text id="idCopyInfoContractSuccessDefaultText" text="{i18n>CopyInfoContractSuccessMsg}" class="sapUiTinyMarginBottom" />
+                    <Link id="idCopyInfoContractGrpCtrNumber" text="{copyInfoContractDialogModel>/CentralPurchaseContract}" press="hanldeNavToGrpCtr" />
+                </l:content>
+            </l:VerticalLayout>
+        </content>
+        <beginButton>
+            <Button id="idCopyInfoSuccessCloseButton" text="{i18n>CloseButtonText}" type="Emphasized" tooltip="{i18n>CloseButtonText}" press="handleCopyInfoContractSuccessClose" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>
